@@ -1,0 +1,775 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Fragments.accountOpening.State10Fragment">
+    <RelativeLayout
+        android:background="@drawable/bg_gradient_cover"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_150sdp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:id="@+id/ivBack"
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_14sdp"
+            android:src="@drawable/back_btn" />
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_14sdp"
+            android:layout_marginTop="@dimen/_47sdp"
+            android:layout_marginEnd="@dimen/_14sdp"
+            android:gravity="start"
+            android:text="Required"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_12ssp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvTitle"
+            android:layout_marginStart="@dimen/_14sdp"
+            android:layout_marginEnd="@dimen/_14sdp"
+            android:gravity="start"
+            android:text="Attachments"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_16ssp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+    <androidx.cardview.widget.CardView
+        app:cardUseCompatPadding="true"
+        app:cardCornerRadius="@dimen/_5sdp"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_110sdp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+        <ScrollView
+            android:paddingTop="@dimen/_20sdp"
+            android:paddingBottom="@dimen/_20sdp"
+            android:paddingStart="@dimen/_14sdp"
+            android:paddingEnd="@dimen/_14sdp"
+            android:scrollbars="none"
+            android:fillViewport="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:paddingStart="@dimen/_8sdp"
+                    android:paddingEnd="@dimen/_5sdp"
+                    android:background="@drawable/bg_bordered_shape"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp">
+
+                    <ImageView
+                        android:id="@+id/ivCnicFront"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/image" />
+                    <LinearLayout
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_marginEnd="@dimen/_5sdp"
+                        android:layout_toEndOf="@+id/ivCnicFront"
+                        android:layout_toStartOf="@+id/rlButtons1"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:textColor="@color/blackBackground"
+                            android:textSize="@dimen/_10ssp"
+                            android:text="Applicant CNIC Front"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/tvFileName1"
+                            android:visibility="gone"
+                            android:textColor="@color/greyDarkBar"
+                            android:textSize="@dimen/_8ssp"
+                            android:text="@string/no_file_chosen"
+                            android:maxLines="1"
+                            android:ellipsize="end"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rlButtons1"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:id="@+id/ivAdd1"
+                            android:visibility="invisible"
+                            android:layout_width="@dimen/_24sdp"
+                            android:layout_height="@dimen/_24sdp"
+                            android:padding="@dimen/_3sdp"
+                            android:src="@drawable/img_add" />
+
+                        <ImageView
+                            android:id="@+id/ivRemove1"
+                            android:layout_width="@dimen/_24sdp"
+                            android:layout_height="@dimen/_24sdp"
+                            android:padding="@dimen/_3sdp"
+                            android:src="@drawable/img_remove"
+                            android:visibility="invisible" />
+                    </RelativeLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:paddingStart="@dimen/_8sdp"
+                    android:paddingEnd="@dimen/_5sdp"
+                    android:background="@drawable/bg_bordered_shape"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp">
+
+                    <ImageView
+                        android:id="@+id/ivCnicBack"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/image" />
+
+                    <LinearLayout
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_marginEnd="@dimen/_5sdp"
+                        android:layout_toEndOf="@+id/ivCnicBack"
+                        android:layout_toStartOf="@+id/rlButtons2"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:textColor="@color/blackBackground"
+                            android:textSize="@dimen/_10ssp"
+                            android:text="Applicant CNIC Back"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/tvFileName2"
+                            android:visibility="gone"
+                            android:textColor="@color/greyDarkBar"
+                            android:textSize="@dimen/_8ssp"
+                            android:text="@string/no_file_chosen"
+                            android:maxLines="1"
+                            android:ellipsize="end"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rlButtons2"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:id="@+id/ivAdd2"
+                            android:visibility="invisible"
+                            android:layout_width="@dimen/_24sdp"
+                            android:layout_height="@dimen/_24sdp"
+                            android:padding="@dimen/_3sdp"
+                            android:src="@drawable/img_add" />
+
+                        <ImageView
+                            android:id="@+id/ivRemove2"
+                            android:layout_width="@dimen/_24sdp"
+                            android:layout_height="@dimen/_24sdp"
+                            android:padding="@dimen/_3sdp"
+                            android:src="@drawable/img_remove"
+                            android:visibility="invisible" />
+                    </RelativeLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:visibility="gone"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:paddingStart="@dimen/_8sdp"
+                    android:paddingEnd="@dimen/_5sdp"
+                    android:background="@drawable/bg_bordered_shape"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp">
+
+                    <ImageView
+                        android:id="@+id/ivApplicantSignature"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/image" />
+                    <LinearLayout
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_marginEnd="@dimen/_5sdp"
+                        android:layout_toEndOf="@+id/ivApplicantSignature"
+                        android:layout_toStartOf="@+id/rlButtons3"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:textColor="@color/blackBackground"
+                            android:textSize="@dimen/_10ssp"
+                            android:text="Applicant Signature"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/tvFileName3"
+                            android:textColor="@color/greyDarkBar"
+                            android:textSize="@dimen/_8ssp"
+                            android:text="@string/no_file_chosen"
+                            android:maxLines="1"
+                            android:ellipsize="end"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rlButtons3"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:id="@+id/ivAdd3"
+                            android:layout_width="@dimen/_24sdp"
+                            android:layout_height="@dimen/_24sdp"
+                            android:padding="@dimen/_3sdp"
+                            android:src="@drawable/img_add" />
+                        <ImageView
+                            android:id="@+id/ivRemove3"
+                            android:visibility="invisible"
+                            android:layout_width="@dimen/_24sdp"
+                            android:layout_height="@dimen/_24sdp"
+                            android:padding="@dimen/_3sdp"
+                            android:src="@drawable/img_remove" />
+                    </RelativeLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:paddingStart="@dimen/_8sdp"
+                    android:paddingEnd="@dimen/_5sdp"
+                    android:background="@drawable/bg_bordered_shape"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp">
+
+                    <ImageView
+                        android:id="@+id/ivProofResidentialAddress"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/image" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_marginEnd="@dimen/_5sdp"
+                        android:layout_toStartOf="@+id/rlButtons4"
+                        android:layout_toEndOf="@+id/ivProofResidentialAddress"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Proof of Residential Address"
+                            android:textColor="@color/blackBackground"
+                            android:textSize="@dimen/_10ssp" />
+
+                        <TextView
+                            android:id="@+id/tvFileName4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:text="No File Chosen"
+                            android:textColor="@color/greyDarkBar"
+                            android:textSize="@dimen/_8ssp" />
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rlButtons4"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:id="@+id/ivAdd4"
+                            android:layout_width="@dimen/_24sdp"
+                            android:layout_height="@dimen/_24sdp"
+                            android:padding="@dimen/_3sdp"
+                            android:src="@drawable/img_add" />
+
+                        <ImageView
+                            android:id="@+id/ivRemove4"
+                            android:layout_width="@dimen/_24sdp"
+                            android:layout_height="@dimen/_24sdp"
+                            android:padding="@dimen/_3sdp"
+                            android:src="@drawable/img_remove"
+                            android:visibility="invisible" />
+                    </RelativeLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:visibility="gone"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:paddingStart="@dimen/_8sdp"
+                    android:paddingEnd="@dimen/_5sdp"
+                    android:background="@drawable/bg_bordered_shape"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp">
+
+                    <ImageView
+                        android:id="@+id/ivProofIncomeSource"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/image" />
+                    <LinearLayout
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_marginEnd="@dimen/_5sdp"
+                        android:layout_toEndOf="@+id/ivProofIncomeSource"
+                        android:layout_toStartOf="@+id/rlButtons5"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:textColor="@color/blackBackground"
+                            android:textSize="@dimen/_10ssp"
+                            android:text="Proof of Source of Income"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/tvFileName5"
+                            android:textColor="@color/greyDarkBar"
+                            android:textSize="@dimen/_8ssp"
+                            android:text="No File Chosen"
+                            android:maxLines="1"
+                            android:ellipsize="end"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rlButtons5"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:id="@+id/ivAdd5"
+                            android:layout_width="@dimen/_24sdp"
+                            android:layout_height="@dimen/_24sdp"
+                            android:padding="@dimen/_3sdp"
+                            android:src="@drawable/img_add" />
+
+                        <ImageView
+                            android:id="@+id/ivRemove5"
+                            android:layout_width="@dimen/_24sdp"
+                            android:layout_height="@dimen/_24sdp"
+                            android:padding="@dimen/_3sdp"
+                            android:src="@drawable/img_remove"
+                            android:visibility="invisible" />
+                    </RelativeLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:visibility="gone"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:paddingStart="@dimen/_8sdp"
+                    android:paddingEnd="@dimen/_5sdp"
+                    android:background="@drawable/bg_bordered_shape"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp">
+
+                    <ImageView
+                        android:id="@+id/ivProofEmployerAddress"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/image" />
+                    <LinearLayout
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_marginEnd="@dimen/_5sdp"
+                        android:layout_toEndOf="@+id/ivProofEmployerAddress"
+                        android:layout_toStartOf="@+id/rlButtons6"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:textColor="@color/blackBackground"
+                            android:textSize="@dimen/_10ssp"
+                            android:text="Proof of Employer Address"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/tvFileName6"
+                            android:textColor="@color/greyDarkBar"
+                            android:textSize="@dimen/_8ssp"
+                            android:text="@string/no_file_chosen"
+                            android:maxLines="1"
+                            android:ellipsize="end"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rlButtons6"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:id="@+id/ivAdd6"
+                            android:layout_width="@dimen/_24sdp"
+                            android:layout_height="@dimen/_24sdp"
+                            android:padding="@dimen/_3sdp"
+                            android:src="@drawable/img_add" />
+
+                        <ImageView
+                            android:id="@+id/ivRemove6"
+                            android:layout_width="@dimen/_24sdp"
+                            android:layout_height="@dimen/_24sdp"
+                            android:padding="@dimen/_3sdp"
+                            android:src="@drawable/img_remove"
+                            android:visibility="invisible" />
+                    </RelativeLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rlZakatForm"
+                    android:visibility="gone"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:paddingStart="@dimen/_8sdp"
+                    android:paddingEnd="@dimen/_5sdp"
+                    android:background="@drawable/bg_bordered_shape"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp">
+
+                    <ImageView
+                        android:id="@+id/ivZakatForm"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/image" />
+                    <LinearLayout
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_marginEnd="@dimen/_5sdp"
+                        android:layout_toEndOf="@+id/ivZakatForm"
+                        android:layout_toStartOf="@+id/rlButtons7"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:textColor="@color/blackBackground"
+                            android:textSize="@dimen/_10ssp"
+                            android:text="Zakat Declaration Form"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/tvFileName7"
+                            android:textColor="@color/greyDarkBar"
+                            android:textSize="@dimen/_8ssp"
+                            android:text="@string/no_file_chosen"
+                            android:maxLines="1"
+                            android:ellipsize="end"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rlButtons7"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:id="@+id/ivAdd7"
+                            android:layout_width="@dimen/_24sdp"
+                            android:layout_height="@dimen/_24sdp"
+                            android:padding="@dimen/_3sdp"
+                            android:src="@drawable/img_add" />
+                        <ImageView
+                            android:id="@+id/ivRemove7"
+                            android:visibility="invisible"
+                            android:layout_width="@dimen/_24sdp"
+                            android:layout_height="@dimen/_24sdp"
+                            android:padding="@dimen/_3sdp"
+                            android:src="@drawable/img_remove" />
+                    </RelativeLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:visibility="gone"
+                    android:id="@+id/rlNomineeFront"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:paddingStart="@dimen/_8sdp"
+                    android:paddingEnd="@dimen/_5sdp"
+                    android:background="@drawable/bg_bordered_shape"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp">
+
+                    <ImageView
+                        android:id="@+id/ivNomineeCnicFront"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/image" />
+                    <LinearLayout
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_marginEnd="@dimen/_5sdp"
+                        android:layout_toEndOf="@+id/ivNomineeCnicFront"
+                        android:layout_toStartOf="@+id/rlButtons8"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:textColor="@color/blackBackground"
+                            android:textSize="@dimen/_10ssp"
+                            android:text="Nominee CNIC Front"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/tvFileName8"
+                            android:textColor="@color/greyDarkBar"
+                            android:textSize="@dimen/_8ssp"
+                            android:text="@string/no_file_chosen"
+                            android:maxLines="1"
+                            android:ellipsize="end"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rlButtons8"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:id="@+id/ivAdd8"
+                            android:layout_width="@dimen/_24sdp"
+                            android:layout_height="@dimen/_24sdp"
+                            android:padding="@dimen/_3sdp"
+                            android:src="@drawable/img_add" />
+                        <ImageView
+                            android:id="@+id/ivRemove8"
+                            android:visibility="invisible"
+                            android:layout_width="@dimen/_24sdp"
+                            android:layout_height="@dimen/_24sdp"
+                            android:padding="@dimen/_3sdp"
+                            android:src="@drawable/img_remove" />
+                    </RelativeLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rlNomineeBack"
+                    android:visibility="gone"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:paddingStart="@dimen/_8sdp"
+                    android:paddingEnd="@dimen/_5sdp"
+                    android:background="@drawable/bg_bordered_shape"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp">
+
+                    <ImageView
+                        android:id="@+id/ivNomineeCnicBack"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/image" />
+                    <LinearLayout
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_marginEnd="@dimen/_5sdp"
+                        android:layout_toEndOf="@+id/ivNomineeCnicBack"
+                        android:layout_toStartOf="@+id/rlButtons9"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:textColor="@color/blackBackground"
+                            android:textSize="@dimen/_10ssp"
+                            android:text="Nominee CNIC Back"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/tvFileName9"
+                            android:textColor="@color/greyDarkBar"
+                            android:textSize="@dimen/_8ssp"
+                            android:text="@string/no_file_chosen"
+                            android:maxLines="1"
+                            android:ellipsize="end"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rlButtons9"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:id="@+id/ivAdd9"
+                            android:layout_width="@dimen/_24sdp"
+                            android:layout_height="@dimen/_24sdp"
+                            android:padding="@dimen/_3sdp"
+                            android:src="@drawable/img_add" />
+                        <ImageView
+                            android:id="@+id/ivRemove9"
+                            android:visibility="invisible"
+                            android:layout_width="@dimen/_24sdp"
+                            android:layout_height="@dimen/_24sdp"
+                            android:padding="@dimen/_3sdp"
+                            android:src="@drawable/img_remove" />
+                    </RelativeLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:visibility="gone"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:paddingStart="@dimen/_8sdp"
+                    android:paddingEnd="@dimen/_5sdp"
+                    android:background="@drawable/bg_bordered_shape"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp">
+
+                    <ImageView
+                        android:id="@+id/ivForm"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/image" />
+                    <LinearLayout
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_marginEnd="@dimen/_5sdp"
+                        android:layout_toEndOf="@+id/ivForm"
+                        android:layout_toStartOf="@+id/rlButtons10"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:textColor="@color/blackBackground"
+                            android:textSize="@dimen/_10ssp"
+                            android:text="Form W-9 / W-8BEN"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/tvFileName10"
+                            android:textColor="@color/greyDarkBar"
+                            android:textSize="@dimen/_8ssp"
+                            android:text="@string/no_file_chosen"
+                            android:maxLines="1"
+                            android:ellipsize="end"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rlButtons10"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:id="@+id/ivAdd10"
+                            android:layout_width="@dimen/_24sdp"
+                            android:layout_height="@dimen/_24sdp"
+                            android:padding="@dimen/_3sdp"
+                            android:src="@drawable/img_add" />
+                        <ImageView
+                            android:id="@+id/ivRemove10"
+                            android:visibility="invisible"
+                            android:layout_width="@dimen/_24sdp"
+                            android:layout_height="@dimen/_24sdp"
+                            android:padding="@dimen/_3sdp"
+                            android:src="@drawable/img_remove" />
+                    </RelativeLayout>
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_35sdp">
+                    <CheckBox
+                        android:id="@+id/checkbox"
+                        android:layout_width="@dimen/_24sdp"
+                        android:layout_height="@dimen/_24sdp"/>
+                    <TextView
+                        android:text="I agree to the Terms of Service and Privacy Policy."
+                        android:maxLines="2"
+                        android:textSize="@dimen/_10ssp"
+                        android:textColor="@color/blackBackground"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+
+                <Button
+                    android:id="@+id/btnSubmit"
+                    android:text="Submit"
+                    android:layout_marginTop="@dimen/_30sdp"
+                    android:layout_marginBottom="@dimen/_6sdp"
+                    style="@style/AppTheme.Button"/>
+
+            </LinearLayout>
+        </ScrollView>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

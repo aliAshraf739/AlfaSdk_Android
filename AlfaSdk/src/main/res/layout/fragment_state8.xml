@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Fragments.accountOpening.State8Fragment">
+    <RelativeLayout
+        android:background="@drawable/bg_gradient_cover"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_150sdp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:id="@+id/ivBack"
+            android:src="@drawable/back_btn"
+            android:layout_marginTop="@dimen/_14sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"/>
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_14sdp"
+            android:layout_marginTop="@dimen/_47sdp"
+            android:layout_marginEnd="@dimen/_14sdp"
+            android:gravity="start"
+            android:text="Common Reporting Standard (CRS)"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_12ssp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvTitle"
+            android:layout_marginStart="@dimen/_14sdp"
+            android:layout_marginEnd="@dimen/_14sdp"
+            android:gravity="start"
+            android:text="Details"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_16ssp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+    <androidx.cardview.widget.CardView
+        app:cardUseCompatPadding="true"
+        app:cardCornerRadius="@dimen/_5sdp"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_110sdp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+        <ScrollView
+            android:paddingTop="@dimen/_20sdp"
+            android:paddingBottom="@dimen/_20sdp"
+            android:paddingStart="@dimen/_14sdp"
+            android:paddingEnd="@dimen/_14sdp"
+            android:scrollbars="none"
+            android:fillViewport="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <!--Name-->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_marginTop="0dp"
+                    style="@style/TextInputLayoutStyle"
+                    android:hint="Q1"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etQ1"
+                        android:inputType="text"
+                        android:focusable="false"
+                        android:cursorVisible="false"
+                        android:focusableInTouchMode="false"
+                        style="@style/AppTheme.EditText"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!--Relationship with Applicant-->
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/TextInputLayoutStyle"
+                    android:hint="Q2"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etQ2"
+                        android:inputType="text"
+                        android:focusable="false"
+                        android:cursorVisible="false"
+                        android:focusableInTouchMode="false"
+                        style="@style/AppTheme.EditText"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!--CNIC / Passport Number-->
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/TextInputLayoutStyle"
+                    android:hint="Q3"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etQ3"
+                        android:inputType="text"
+                        android:focusable="false"
+                        android:cursorVisible="false"
+                        android:focusableInTouchMode="false"
+                        style="@style/AppTheme.EditText"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <Button
+                    android:id="@+id/btnNext"
+                    android:text="Next"
+                    android:layout_marginTop="@dimen/_30sdp"
+                    android:layout_marginBottom="@dimen/_6sdp"
+                    style="@style/AppTheme.Button"/>
+
+            </LinearLayout>
+        </ScrollView>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

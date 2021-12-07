@@ -1,0 +1,3 @@
+include ':AlfaSdk'
+include ':app'
+rootProject.name = "AlfaSdkExample"

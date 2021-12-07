@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Fragments.accountOpening.State3Fragment">
+    <RelativeLayout
+        android:background="@drawable/bg_gradient_cover"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_150sdp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+        <ImageView
+            android:id="@+id/ivBack"
+            android:src="@drawable/back_btn"
+            android:layout_marginTop="@dimen/_14sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"/>
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_14sdp"
+            android:layout_marginTop="@dimen/_47sdp"
+            android:layout_marginEnd="@dimen/_14sdp"
+            android:gravity="start"
+            android:text="Contact"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_12ssp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvTitle"
+            android:layout_marginStart="@dimen/_14sdp"
+            android:layout_marginEnd="@dimen/_14sdp"
+            android:gravity="start"
+            android:text="Details"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_16ssp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+    <androidx.cardview.widget.CardView
+        app:cardUseCompatPadding="true"
+        app:cardCornerRadius="@dimen/_5sdp"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_110sdp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+        <ScrollView
+            android:paddingTop="@dimen/_20sdp"
+            android:paddingBottom="@dimen/_20sdp"
+            android:paddingStart="@dimen/_14sdp"
+            android:paddingEnd="@dimen/_14sdp"
+            android:scrollbars="none"
+            android:fillViewport="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <!--Mailing Address-->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:text="Mailing Address:"
+                    android:textColor="@color/blackBackground"
+                    android:textSize="@dimen/_12ssp"
+                    android:textStyle="bold" />
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_marginTop="@dimen/_5sdp"
+                    style="@style/TextInputLayoutStyle"
+                    android:hint="Address"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etMailingAddress"
+                        android:maxLength="40"
+                        android:focusable="false"
+                        android:cursorVisible="false"
+                        android:focusableInTouchMode="false"
+                        style="@style/AppTheme.EditText"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!--City/Town/Village-->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_marginTop="@dimen/_5sdp"
+                    style="@style/TextInputLayoutStyle"
+                    android:hint="City / Town / Village"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp">
+                    <AutoCompleteTextView
+                        android:id="@+id/atvMailingCity"
+                        android:focusable="false"
+                        android:cursorVisible="false"
+                        android:focusableInTouchMode="false"
+                        style="@style/AppTheme.EditText"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!--Province/State-->
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/TextInputLayoutStyle"
+                    android:hint="Province / State"
+                    app:endIconDrawable="@drawable/ic_drop_down"
+                    app:endIconTint="@color/alfaRed"
+                    app:endIconMode="custom"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp">
+                    <AutoCompleteTextView
+                        android:id="@+id/atvMailingProvince"
+                        android:focusable="false"
+                        android:cursorVisible="false"
+                        android:focusableInTouchMode="false"
+                        style="@style/AppTheme.EditText"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!--Country-->
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/TextInputLayoutStyle"
+                    android:hint="Country"
+                    app:endIconDrawable="@drawable/ic_drop_down"
+                    app:endIconTint="@color/alfaRed"
+                    app:endIconMode="custom"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etMailingCountry"
+                        android:focusable="false"
+                        android:cursorVisible="false"
+                        android:focusableInTouchMode="false"
+                        style="@style/AppTheme.EditText"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!--Tel. (Off)-->
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/TextInputLayoutStyle"
+                    android:hint="Tel. (Off)"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etTelOff"
+                        android:maxLength="11"
+                        android:focusable="false"
+                        android:cursorVisible="false"
+                        android:focusableInTouchMode="false"
+                        style="@style/AppTheme.EditText"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!--Tel. (Res)-->
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/TextInputLayoutStyle"
+                    android:hint="Tel. (Res)"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etTelRes"
+                        android:maxLength="11"
+                        android:focusable="false"
+                        android:cursorVisible="false"
+                        android:focusableInTouchMode="false"
+                        style="@style/AppTheme.EditText"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!--Fax-->
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/TextInputLayoutStyle"
+                    android:hint="Fax"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etFax"
+                        android:maxLength="15"
+                        android:focusable="false"
+                        android:cursorVisible="false"
+                        android:focusableInTouchMode="false"
+                        style="@style/AppTheme.EditText"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!--Mobile-->
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/TextInputLayoutStyle"
+                    android:hint="Mobile"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etMobile"
+                        android:maxLength="11"
+                        android:focusable="false"
+                        android:cursorVisible="false"
+                        android:focusableInTouchMode="false"
+                        style="@style/AppTheme.EditText"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!--Email-->
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/TextInputLayoutStyle"
+                    android:hint="Email"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etEmail"
+                        android:maxLength="60"
+                        android:focusable="false"
+                        android:cursorVisible="false"
+                        android:focusableInTouchMode="false"
+                        style="@style/AppTheme.EditText"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!--Permanent Address-->
+                <TextView
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:text="Permanent Address:"
+                    android:textColor="@color/blackBackground"
+                    android:textSize="@dimen/_12ssp"
+                    android:textStyle="bold" />
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_marginTop="@dimen/_5sdp"
+                    style="@style/TextInputLayoutStyle"
+                    android:hint="Address"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etPermanentAddress"
+                        android:maxLength="40"
+                        android:focusable="false"
+                        android:cursorVisible="false"
+                        android:focusableInTouchMode="false"
+                        style="@style/AppTheme.EditText"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!--City/Town/Village-->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_marginTop="@dimen/_5sdp"
+                    style="@style/TextInputLayoutStyle"
+                    android:hint="City / Town / Village"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp">
+                    <AutoCompleteTextView
+                        android:id="@+id/atvPermanentCity"
+                        android:focusable="false"
+                        android:cursorVisible="false"
+                        android:focusableInTouchMode="false"
+                        style="@style/AppTheme.EditText"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!--Province/State-->
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/TextInputLayoutStyle"
+                    android:hint="Province / State"
+                    app:endIconDrawable="@drawable/ic_drop_down"
+                    app:endIconTint="@color/alfaRed"
+                    app:endIconMode="custom"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp">
+                    <AutoCompleteTextView
+                        android:id="@+id/atvPermanentProvince"
+                        android:focusable="false"
+                        android:cursorVisible="false"
+                        android:focusableInTouchMode="false"
+                        style="@style/AppTheme.EditText"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!--Country-->
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/TextInputLayoutStyle"
+                    android:hint="Country"
+                    app:endIconDrawable="@drawable/ic_drop_down"
+                    app:endIconTint="@color/alfaRed"
+                    app:endIconMode="custom"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etPermanentCountry"
+                        android:focusable="false"
+                        android:cursorVisible="false"
+                        android:focusableInTouchMode="false"
+                        style="@style/AppTheme.EditText"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <Button
+                    android:id="@+id/btnNext"
+                    android:text="Next"
+                    android:layout_marginTop="@dimen/_30sdp"
+                    android:layout_marginBottom="@dimen/_6sdp"
+                    style="@style/AppTheme.Button"/>
+
+            </LinearLayout>
+        </ScrollView>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

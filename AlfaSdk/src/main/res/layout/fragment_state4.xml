@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Fragments.accountOpening.State4Fragment">
+    <RelativeLayout
+        android:background="@drawable/bg_gradient_cover"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_150sdp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:id="@+id/ivBack"
+            android:src="@drawable/back_btn"
+            android:layout_marginTop="@dimen/_14sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"/>
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_14sdp"
+            android:layout_marginTop="@dimen/_47sdp"
+            android:layout_marginEnd="@dimen/_14sdp"
+            android:gravity="start"
+            android:text="Bank"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_12ssp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvTitle"
+            android:layout_marginStart="@dimen/_14sdp"
+            android:layout_marginEnd="@dimen/_14sdp"
+            android:gravity="start"
+            android:text="Details"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_16ssp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+    <androidx.cardview.widget.CardView
+        app:cardUseCompatPadding="true"
+        app:cardCornerRadius="@dimen/_5sdp"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_110sdp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+        <ScrollView
+            android:paddingTop="@dimen/_20sdp"
+            android:paddingBottom="@dimen/_20sdp"
+            android:scrollbars="none"
+            android:fillViewport="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:paddingStart="@dimen/_14sdp"
+                    android:paddingEnd="@dimen/_14sdp"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <!--Bank Account Title-->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_marginTop="0dp"
+                        style="@style/TextInputLayoutStyle"
+                        android:hint="Account Name"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_40sdp">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etAccountName"
+                            android:inputType="text"
+                            android:maxLength="120"
+                            style="@style/AppTheme.EditText"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <!--Bank Name-->
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/TextInputLayoutStyle"
+                        android:hint="Bank Name"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_40sdp">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etBankName"
+                            android:maxLength="40"
+                            android:inputType="text"
+                            android:focusable="false"
+                            android:cursorVisible="false"
+                            android:focusableInTouchMode="false"
+                            style="@style/AppTheme.EditText"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <!--IBAN Number-->
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/TextInputLayoutStyle"
+                        android:hint="IBAN Number"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_40sdp">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etIbanNumber"
+                            android:maxLength="24"
+                            android:inputType="number"
+                            android:focusable="false"
+                            android:cursorVisible="false"
+                            android:focusableInTouchMode="false"
+                            style="@style/AppTheme.EditText"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <!--Branch Name-->
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/TextInputLayoutStyle"
+                        android:visibility="gone"
+                        android:hint="Branch Name"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_40sdp">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etBranchName"
+                            android:inputType="text"
+                            android:focusable="false"
+                            android:cursorVisible="false"
+                            android:focusableInTouchMode="false"
+                            style="@style/AppTheme.EditText"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <!--Branch Code-->
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/TextInputLayoutStyle"
+                        android:visibility="gone"
+                        android:hint="Branch Code"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_40sdp">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etBranchCode"
+                            android:inputType="number"
+                            android:focusable="false"
+                            android:cursorVisible="false"
+                            android:focusableInTouchMode="false"
+                            style="@style/AppTheme.EditText"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <!--Branch Address-->
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/TextInputLayoutStyle"
+                        android:visibility="gone"
+                        android:hint="Branch Address"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_40sdp">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etBranchAddress"
+                            android:inputType="text"
+                            android:focusable="false"
+                            android:cursorVisible="false"
+                            android:focusableInTouchMode="false"
+                            style="@style/AppTheme.EditText"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:text="Nominee"
+                    android:textSize="@dimen/_12ssp"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <RadioGroup
+                    android:id="@+id/radioGroup"
+                    android:checkedButton="@id/radio1"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:layout_marginEnd="@dimen/_12sdp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <RadioButton
+                        android:id="@+id/radio1"
+                        android:text="Yes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_24sdp"/>
+                    <RadioButton
+                        android:id="@+id/radio2"
+                        android:text="No"
+                        android:layout_marginStart="@dimen/_16sdp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_24sdp"/>
+                </RadioGroup>
+
+                <Button
+                    android:id="@+id/btnNext"
+                    android:text="Next"
+                    android:layout_marginTop="@dimen/_30sdp"
+                    android:layout_marginStart="@dimen/_14sdp"
+                    android:layout_marginEnd="@dimen/_14sdp"
+                    android:layout_marginBottom="@dimen/_6sdp"
+                    style="@style/AppTheme.Button"/>
+
+            </LinearLayout>
+        </ScrollView>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

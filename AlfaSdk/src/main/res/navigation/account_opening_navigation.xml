@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/account_opening_navigation"
+    app:startDestination="@id/stateFragment">
+    <fragment
+        android:id="@+id/stateFragment"
+        android:name="com.example.alfasdk.Fragments.accountOpening.State1Fragment"
+        android:label="fragment_state1"
+        tools:layout="@layout/fragment_state1" >
+        <action
+            android:id="@+id/action_state1Fragment_to_state2Fragment"
+            app:destination="@id/state2Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/state2Fragment"
+        android:name="com.example.alfasdk.Fragments.accountOpening.State2Fragment"
+        android:label="fragment_state2"
+        tools:layout="@layout/fragment_state2" >
+        <action
+            android:id="@+id/action_state2Fragment_to_state3Fragment"
+            app:destination="@id/state3Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/state3Fragment"
+        android:name="com.example.alfasdk.Fragments.accountOpening.State3Fragment"
+        android:label="fragment_state3"
+        tools:layout="@layout/fragment_state3" >
+        <action
+            android:id="@+id/action_state3Fragment_to_state4Fragment"
+            app:destination="@id/state4Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/state4Fragment"
+        android:name="com.example.alfasdk.Fragments.accountOpening.State4Fragment"
+        android:label="fragment_state4"
+        tools:layout="@layout/fragment_state4" >
+        <action
+            android:id="@+id/action_state4Fragment_to_state5Fragment"
+            app:destination="@id/state5Fragment" />
+        <action
+            android:id="@+id/action_state4Fragment_to_state6Fragment"
+            app:destination="@id/state6Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/state5Fragment"
+        android:name="com.example.alfasdk.Fragments.accountOpening.State5Fragment"
+        android:label="fragment_state5"
+        tools:layout="@layout/fragment_state5" >
+        <action
+            android:id="@+id/action_state5Fragment_to_state6Fragment"
+            app:destination="@id/state6Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/state6Fragment"
+        android:name="com.example.alfasdk.Fragments.accountOpening.State6Fragment"
+        android:label="fragment_state6"
+        tools:layout="@layout/fragment_state6" >
+        <action
+            android:id="@+id/action_state6Fragment_to_state10Fragment"
+            app:destination="@id/state10Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/state10Fragment"
+        android:name="com.example.alfasdk.Fragments.accountOpening.State10Fragment"
+        android:label="fragment_state10"
+        tools:layout="@layout/fragment_state10" />
+</navigation>
