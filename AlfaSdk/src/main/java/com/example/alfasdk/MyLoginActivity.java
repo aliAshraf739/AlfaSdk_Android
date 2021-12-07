@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.example.MenuActivity;
 import com.example.alfasdk.Const.ConnectionDetector;
 import com.example.alfasdk.Const.Constants;
+import com.example.alfasdk.Models.AccountOpening.AccountOpeningObject;
 import com.example.alfasdk.Models.Event;
 import com.example.alfasdk.Models.LoginModel.LoginResponse;
 import com.example.alfasdk.Models.MarketModel.MarketResponse;
@@ -40,25 +41,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-
-/**
- * Developed by Hasham.Tahir on 1/27/2016.
- */
-
-
 public class MyLoginActivity extends BaseActivity implements SdkInterface {
 
     private static final String TAG = "LoginActivity";
-//    @BindView(R.id.login_name)
     EditText etName;
-//    @BindView(R.id.login_pass)
     EditText etPass;
-    //    @BindView(R.id.login_registerme)
-//    Button registermeBut;
-//    @BindView(R.id.tv_forgotPwd)
     TextView forgotPassword;
-
-//    @BindView(R.id.login_server)
     TextView etServer;
     Button login_btn;
     Context context = MyLoginActivity.this;
@@ -517,12 +505,9 @@ public class MyLoginActivity extends BaseActivity implements SdkInterface {
     }
 
     @Override
-    public void createAccount() {
-        moveToCreateAccountAcitivty();
-    }
-
-    private void moveToCreateAccountAcitivty() {
+    public void createAccount(AccountOpeningObject accountOpeningObject) {
         Intent intent = new Intent(context, AccountOpeningActivity.class);
+        intent.putExtra("accountOpeningObject", accountOpeningObject);
         startActivity(intent);
     }
 
