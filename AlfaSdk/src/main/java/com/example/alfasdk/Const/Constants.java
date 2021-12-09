@@ -97,15 +97,18 @@ public class Constants {
     public static final String FEED_SERVER_BROADCAST = "FEED_SERVER_BROADCAST";
     public static final String MSG_SERVER_BROADCAST = "MSG_SERVER_BROADCAST";
 
-    public static final String ACCOUNT_OPENING_BASE_URL = "http://192.168.0.211:9000/";
+    //local
+//    public static final String ACCOUNT_OPENING_BASE_URL = "http://192.168.0.211:9000/";
 
-    /**
-     * UnComment following block for Live server
-     **/
+    //live
+    public static final String ACCOUNT_OPENING_BASE_URL = "http://203.101.171.179:8080/";
+
+
 //    public static String[] serverIpAddress = { "terminal1.alfalahtrade.com", "terminal1.alfalahtrade.com "};
     public static String[] serverIpAddress = { "203.101.171.179", "203.101.171.179 "};
 //    public static int[] ports = {5678,5679};
     public static int[] ports = {5678};
+
     public static final String KASB_API_LOGIN = "";
     public  static final String RESEARCH_PORTAL_URL="http://www.e-falah.com/api/v2/service/authenticate";
     public  static final String RESESRCH_PORTAL_CLIENT="atif.khan";
