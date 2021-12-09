@@ -511,5 +511,11 @@ public class MyLoginActivity extends BaseActivity implements SdkInterface {
         startActivity(intent);
     }
 
+    @Override
+    public void createAccount() {
+        Intent intent = new Intent(context, AccountOpeningActivity.class);
+        startActivity(intent);
+    }
+
 }
 
