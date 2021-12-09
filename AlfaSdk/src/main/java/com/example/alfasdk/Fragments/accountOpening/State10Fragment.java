@@ -27,6 +27,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.alfasdk.AccountOpeningActivity;
 import com.example.alfasdk.Const.ConnectionDetector;
+import com.example.alfasdk.Const.Constants;
 import com.example.alfasdk.Models.AccountOpening.AccountOpeningObject;
 import com.example.alfasdk.Models.AccountOpening.AccountOpeningRequestResponse;
 import com.example.alfasdk.Network.RetrofitApi;
@@ -296,6 +297,8 @@ public class State10Fragment extends Fragment implements View.OnClickListener {
     }
 
     private void submitData() {
+
+        Log.e(TAG, "Trying on: "+ Constants.ACCOUNT_OPENING_BASE_URL);
 
         if (!ConnectionDetector.getInstance(requireActivity()).isConnectingToInternet()) {
             Alert.show(requireActivity(), "Error", "No Internet Connection.");
