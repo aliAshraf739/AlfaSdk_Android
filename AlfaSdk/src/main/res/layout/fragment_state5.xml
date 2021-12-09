@@ -128,7 +128,6 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etCnicPassportNumber"
                         android:inputType="text"
-                        android:maxLength="13"
                         style="@style/AppTheme.EditText"/>
                 </com.google.android.material.textfield.TextInputLayout>
 

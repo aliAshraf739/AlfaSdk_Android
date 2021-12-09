@@ -1,6 +1,7 @@
 package com.example.alfasdk.Fragments.accountOpening;
 
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -86,10 +87,12 @@ public class State2Fragment extends Fragment implements View.OnClickListener {
         atvIdentificationType.setOnItemClickListener((adapterView, view1, i, l) -> {
             Log.e(TAG, "initViews: ");
             if(mListIdentificationTypes[i].equals("CNIC") || mListIdentificationTypes[i].equals("SNIC")){
+                setMaxLength(etCnicPassportNumber, 13);
                 isPlaceOfIssueEnabled = false;
                 textInputLayoutPlace.setVisibility(View.GONE);
                 obj.setUINTYPE(mListIdentificationTypes[i]);
             }else{
+                setMaxLength(etCnicPassportNumber, 25);
                 isPlaceOfIssueEnabled = true;
                 textInputLayoutPlace.setVisibility(View.VISIBLE);
                 obj.setUINTYPE("NICOP");
@@ -110,6 +113,12 @@ public class State2Fragment extends Fragment implements View.OnClickListener {
             }
         });
 
+    }
+
+    private void setMaxLength(TextInputEditText textInputEditText, int length) {
+        InputFilter[] FilterArray = new InputFilter[1];
+        FilterArray[0] = new InputFilter.LengthFilter(length);
+        textInputEditText.setFilters(FilterArray);
     }
 
     private void setData() {

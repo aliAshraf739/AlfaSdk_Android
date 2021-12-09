@@ -115,6 +115,7 @@
                     android:layout_height="@dimen/_40sdp">
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etFatherName"
+                        android:maxLength="40"
                         android:focusable="false"
                         android:cursorVisible="false"
                         android:focusableInTouchMode="false"

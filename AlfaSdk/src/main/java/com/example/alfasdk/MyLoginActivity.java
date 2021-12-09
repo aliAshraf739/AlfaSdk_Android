@@ -506,7 +506,12 @@ public class MyLoginActivity extends BaseActivity implements SdkInterface {
 
     @Override
     public void createAccount(AccountOpeningObject accountOpeningObject) {
-        Intent intent = new Intent(context, AccountOpeningActivity.class);
+//        Intent intent = new Intent(context, AccountOpeningActivity.class);
+//        intent.putExtra("accountOpeningObject", accountOpeningObject);
+//        startActivity(intent);
+
+        Intent intent = new Intent();
+        intent.setClassName("com.example.alfasdk", "AccountOpeningActivity");
         intent.putExtra("accountOpeningObject", accountOpeningObject);
         startActivity(intent);
     }

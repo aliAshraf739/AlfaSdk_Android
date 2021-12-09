@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Office Work (Ali Ashraf)/AlfaSdk_Android/AlfaSdk/src/main/res/layout/fragment_state1.xml" value="0.20416666666666666" />
+        <entry key="..\:/Office Work (Ali Ashraf)/AlfaSdk_Android/AlfaSdk/src/main/res/layout/fragment_state2.xml" value="0.25" />
+      </map>
+    </option>
+  </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />

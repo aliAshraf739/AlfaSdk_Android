@@ -7,6 +7,7 @@ import android.widget.Button;
 import com.example.alfasdk.AccountOpeningActivity;
 import com.example.alfasdk.Models.AccountOpening.AccountOpeningObject;
 import com.example.alfasdk.MyLoginActivity;
+import com.example.alfasdk.SdkInterface;
 
 public class MainActivityApp extends MyLoginActivity {
 
@@ -29,8 +30,13 @@ public class MainActivityApp extends MyLoginActivity {
 
             AccountOpeningObject accountOpeningObject = getModelObject();
             Intent intent = new Intent(this, AccountOpeningActivity.class);
-            intent.putExtra("accountOpeningObject", accountOpeningObject);
+            intent.putExtra("accountOpeningObject", new AccountOpeningObject());
             startActivity(intent);
+
+//            SdkInterface sdkInterface = new MyLoginActivity();
+//            sdkInterface.createAccount(new AccountOpeningObject());
+
+
 
         });
     }

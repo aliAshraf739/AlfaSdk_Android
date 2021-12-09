@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.text.InputFilter;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -90,10 +91,12 @@ public class State5Fragment extends Fragment implements View.OnClickListener {
         atvIdentificationType.setOnItemClickListener((adapterView, view1, i, l) -> {
             Log.e(TAG, "initViews: ");
             if(mListIdentificationTypes[i].equals("CNIC") || mListIdentificationTypes[i].equals("SNIC")){
+                setMaxLength(etCnicPassportNumber, 13);
                 isPlaceOfIssueEnabled = false;
                 textInputLayoutPlace.setVisibility(View.GONE);
                 obj.setUINTYPENMN(mListIdentificationTypes[i]);
             }else{
+                setMaxLength(etCnicPassportNumber, 25);
                 isPlaceOfIssueEnabled = true;
                 textInputLayoutPlace.setVisibility(View.VISIBLE);
                 obj.setUINTYPENMN("NICOP");
@@ -114,6 +117,12 @@ public class State5Fragment extends Fragment implements View.OnClickListener {
             }
         });
 
+    }
+
+    private void setMaxLength(TextInputEditText textInputEditText, int length) {
+        InputFilter[] FilterArray = new InputFilter[1];
+        FilterArray[0] = new InputFilter.LengthFilter(length);
+        textInputEditText.setFilters(FilterArray);
     }
 
     private void setData() {
