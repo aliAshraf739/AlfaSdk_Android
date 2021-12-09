@@ -345,7 +345,6 @@ public class State10Fragment extends Fragment implements View.OnClickListener {
     }
 
     private void showAlert() {
-        Alert.show(requireActivity(), "Success", "Account Created Successfully.");
         AlertDialog.Builder dialog = new AlertDialog.Builder(requireActivity());
         dialog.setCancelable(false);
         dialog.setTitle("Success");

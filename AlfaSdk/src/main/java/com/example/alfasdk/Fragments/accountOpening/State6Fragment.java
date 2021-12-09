@@ -40,6 +40,7 @@ public class State6Fragment extends Fragment implements View.OnClickListener {
     private TextInputEditText etJobTitle;
     private TextInputEditText etDepartment;
     private TextInputEditText etEmployerBusiness;
+    TextInputLayout textInputLayoutEmployerName, textInputLayoutEmployerJobTitle, textInputLayoutEmployerDepartment, textInputLayoutEmployerAddress;
     private Button btnNext;
 
     private AccountOpeningObject obj;
@@ -86,6 +87,12 @@ public class State6Fragment extends Fragment implements View.OnClickListener {
         etJobTitle = view.findViewById(R.id.etJobTitle);
         etDepartment = view.findViewById(R.id.etDepartment);
         etEmployerBusiness = view.findViewById(R.id.etEmployerBusiness);
+        textInputLayoutEmployerName = view.findViewById(R.id.textInputLayoutEmployerName);
+        textInputLayoutEmployerJobTitle = view.findViewById(R.id.textInputLayoutEmployerJobTitle);
+        textInputLayoutEmployerDepartment = view.findViewById(R.id.textInputLayoutEmployerDepartment);
+        textInputLayoutEmployerAddress = view.findViewById(R.id.textInputLayoutEmployerAddress);
+
+
         btnNext = view.findViewById(R.id.btnNext);
 
         ivBack.setOnClickListener(this);
@@ -100,6 +107,11 @@ public class State6Fragment extends Fragment implements View.OnClickListener {
             }else{
                 isOtherOccupationEnabled = false;
                 textInputLayoutOther.setVisibility(View.GONE);
+                if(mListOccupations[i].equals("Housewife") || mListOccupations[i].equals("Household")){
+                    disableEmployerFields();
+                }else{
+                    enableEmployerFields();
+                }
             }
         });
 
@@ -114,29 +126,13 @@ public class State6Fragment extends Fragment implements View.OnClickListener {
         atvOccupation.setText(obj.getOCCUPATION());
 
         if(obj.getOCCUPATION().equals("Housewife") || obj.getOCCUPATION().equals("Household")){
-            isEmployerNameEnabled=false;
-            isJobTitleEnabled=false;
-            isDepartmentEnabledEnabled=false;
-            isEmployerAddressEnabled=false;
-
-            etEmployerName.setVisibility(View.GONE);
-            etJobTitle.setVisibility(View.GONE);
-            etDepartment.setVisibility(View.GONE);
-            etEmployerBusiness.setVisibility(View.GONE);
+            disableEmployerFields();
         }
         else if(obj.getOCCUPATION().equals("Others)") || obj.getOCCUPATION().equals("Others (Specify)")){
             isOtherOccupationEnabled = true;
         }
         else{
-            isEmployerNameEnabled=true;
-            isJobTitleEnabled=true;
-            isDepartmentEnabledEnabled=true;
-            isEmployerAddressEnabled=true;
-
-            etEmployerName.setVisibility(View.VISIBLE);
-            etJobTitle.setVisibility(View.VISIBLE);
-            etDepartment.setVisibility(View.VISIBLE);
-            etEmployerBusiness.setVisibility(View.VISIBLE);
+            enableEmployerFields();
         }
 
         ArrayAdapter<String> arrayAdapter1 = new ArrayAdapter<>(requireActivity(), android.R.layout.simple_list_item_1, mListOccupations);
@@ -147,6 +143,29 @@ public class State6Fragment extends Fragment implements View.OnClickListener {
 
         setInputsEditAble();
 
+    }
+
+    private void enableEmployerFields(){
+        isEmployerNameEnabled=true;
+        isJobTitleEnabled=true;
+        isDepartmentEnabledEnabled=true;
+        isEmployerAddressEnabled=true;
+
+        textInputLayoutEmployerName.setVisibility(View.VISIBLE);
+        textInputLayoutEmployerJobTitle.setVisibility(View.VISIBLE);
+        textInputLayoutEmployerDepartment.setVisibility(View.VISIBLE);
+        textInputLayoutEmployerAddress.setVisibility(View.VISIBLE);
+    }
+    private void disableEmployerFields(){
+        isEmployerNameEnabled=false;
+        isJobTitleEnabled=false;
+        isDepartmentEnabledEnabled=false;
+        isEmployerAddressEnabled=false;
+
+        textInputLayoutEmployerName.setVisibility(View.GONE);
+        textInputLayoutEmployerJobTitle.setVisibility(View.GONE);
+        textInputLayoutEmployerDepartment.setVisibility(View.GONE);
+        textInputLayoutEmployerAddress.setVisibility(View.GONE);
     }
 
     private void setInputsEditAble() {

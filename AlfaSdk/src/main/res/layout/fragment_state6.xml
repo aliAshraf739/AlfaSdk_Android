@@ -141,6 +141,7 @@
 
                 <!--Name of Employer/Business-->
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayoutEmployerName"
                     style="@style/TextInputLayoutStyle"
                     android:hint="Name of Employer / Business"
                     android:layout_width="match_parent"
@@ -154,6 +155,7 @@
 
                 <!--Job Title/Designation-->
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayoutEmployerJobTitle"
                     style="@style/TextInputLayoutStyle"
                     android:hint="Job Title/Designation"
                     android:layout_width="match_parent"
@@ -167,6 +169,7 @@
 
                 <!--Department-->
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayoutEmployerDepartment"
                     style="@style/TextInputLayoutStyle"
                     android:hint="Department"
                     android:layout_width="match_parent"
@@ -180,6 +183,7 @@
 
                 <!--Address of Employer/Business-->
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayoutEmployerAddress"
                     style="@style/TextInputLayoutStyle"
                     android:hint="Address of Employer/Business"
                     android:layout_width="match_parent"

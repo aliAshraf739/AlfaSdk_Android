@@ -30,13 +30,8 @@ public class MainActivityApp extends MyLoginActivity {
 
             AccountOpeningObject accountOpeningObject = getModelObject();
             Intent intent = new Intent(this, AccountOpeningActivity.class);
-            intent.putExtra("accountOpeningObject", new AccountOpeningObject());
+            intent.putExtra("accountOpeningObject", accountOpeningObject);
             startActivity(intent);
-
-//            SdkInterface sdkInterface = new MyLoginActivity();
-//            sdkInterface.createAccount(new AccountOpeningObject());
-
-
 
         });
     }
