@@ -305,8 +305,9 @@ public class State10Fragment extends Fragment implements View.OnClickListener {
             return;
         }
 
+        Log.e(TAG, "Nationality: "+accountOpeningObject.getNATIONALITY());
+        Log.e(TAG, "Zakat Status: "+accountOpeningObject.getZAKATSTATUS());
         Log.e(TAG, "dateOfExpiry: "+accountOpeningObject.getDATEOFEXPIRY());
-        Log.e(TAG, "CNIC BACK FILE: "+accountOpeningObject.getCNICBACK());
         Log.e(TAG, "RESIDENTIAL_STATUS: "+accountOpeningObject.getRESIDENTIALSTATUS());
 
         loading.show();

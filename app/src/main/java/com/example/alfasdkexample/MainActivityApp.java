@@ -28,9 +28,9 @@ public class MainActivityApp extends MyLoginActivity {
 ////            sdkInterface.login(v, token, "PK54ALFH0005001004799205","4210152572587");
 //            sdkInterface.createAccount();
 
-            AccountOpeningObject accountOpeningObject = getModelObject();
+           // AccountOpeningObject accountOpeningObject = getModelObject();
             Intent intent = new Intent(this, AccountOpeningActivity.class);
-            intent.putExtra("accountOpeningObject", accountOpeningObject);
+            intent.putExtra("accountOpeningObject", new AccountOpeningObject());
             startActivity(intent);
 
         });

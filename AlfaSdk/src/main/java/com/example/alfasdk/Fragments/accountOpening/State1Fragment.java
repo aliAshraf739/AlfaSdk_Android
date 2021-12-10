@@ -183,6 +183,7 @@ public class State1Fragment extends Fragment implements View.OnClickListener {
             return false;
         }else{
             etNationality.setText("Pakistani");
+            obj.setNATIONALITY("Pakistani");
         }
 
         if(atvMartialStatus.getText().toString().isEmpty()){
@@ -197,6 +198,10 @@ public class State1Fragment extends Fragment implements View.OnClickListener {
             return false;
         }else{
             obj.setRESIDENTIALSTATUS("Pakistani");
+        }
+
+        if(obj.getZAKATSTATUS().isEmpty()){
+            obj.setZAKATSTATUS("A");
         }
 
         return true;
