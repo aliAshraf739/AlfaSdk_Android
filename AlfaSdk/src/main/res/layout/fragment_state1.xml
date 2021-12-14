@@ -158,7 +158,6 @@
                 <!--Date of Birth-->
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/TextInputLayoutStyle"
-                    android:visibility="gone"
                     android:hint="Date of Birth"
                     app:endIconDrawable="@drawable/ic_calendar_2"
                     app:endIconTint="@color/alfaRed"
