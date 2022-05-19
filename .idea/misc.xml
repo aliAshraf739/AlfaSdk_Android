@@ -3,12 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Office Work (Ali Ashraf)/AlfaSdk_Android/AlfaSdk/src/main/res/layout/fragment_state1.xml" value="0.25" />
+        <entry key="..\:/Office Work (Ali Ashraf)/AlfaSdk_Android/AlfaSdk/src/main/res/layout/fragment_state1.xml" value="0.22" />
+        <entry key="..\:/Office Work (Ali Ashraf)/AlfaSdk_Android/AlfaSdk/src/main/res/layout/fragment_state10.xml" value="0.18" />
         <entry key="..\:/Office Work (Ali Ashraf)/AlfaSdk_Android/AlfaSdk/src/main/res/layout/fragment_state2.xml" value="0.25" />
-        <entry key="..\:/Office Work (Ali Ashraf)/AlfaSdk_Android/AlfaSdk/src/main/res/layout/fragment_state3.xml" value="0.20416666666666666" />
-        <entry key="..\:/Office Work (Ali Ashraf)/AlfaSdk_Android/AlfaSdk/src/main/res/layout/fragment_state4.xml" value="0.20416666666666666" />
-        <entry key="..\:/Office Work (Ali Ashraf)/AlfaSdk_Android/AlfaSdk/src/main/res/layout/fragment_state5.xml" value="0.1675213675213675" />
-        <entry key="..\:/Office Work (Ali Ashraf)/AlfaSdk_Android/AlfaSdk/src/main/res/layout/fragment_state6.xml" value="0.25" />
+        <entry key="..\:/Office Work (Ali Ashraf)/AlfaSdk_Android/AlfaSdk/src/main/res/layout/fragment_state3.xml" value="0.25" />
+        <entry key="..\:/Office Work (Ali Ashraf)/AlfaSdk_Android/AlfaSdk/src/main/res/layout/fragment_state4.xml" value="0.25" />
+        <entry key="..\:/Office Work (Ali Ashraf)/AlfaSdk_Android/AlfaSdk/src/main/res/layout/fragment_state5.xml" value="0.25" />
+        <entry key="..\:/Office Work (Ali Ashraf)/AlfaSdk_Android/AlfaSdk/src/main/res/layout/fragment_state6.xml" value="0.16" />
+        <entry key="..\:/Office Work (Ali Ashraf)/AlfaSdk_Android/AlfaSdk/src/main/res/layout/fragment_state7.xml" value="0.1576923076923077" />
+        <entry key="..\:/Office Work (Ali Ashraf)/AlfaSdk_Android/AlfaSdk/src/main/res/layout/fragment_state8.xml" value="0.1576923076923077" />
+        <entry key="..\:/Office Work (Ali Ashraf)/AlfaSdk_Android/AlfaSdk/src/main/res/layout/fragment_state9.xml" value="0.25" />
+        <entry key="..\:/Office Work (Ali Ashraf)/AlfaSdk_Android/AlfaSdk/src/main/res/layout/my_activity_login.xml" value="0.25" />
+        <entry key="..\:/Office Work (Ali Ashraf)/AlfaSdk_Android/app/src/main/res/layout/activity_main_app.xml" value="0.18" />
       </map>
     </option>
   </component>

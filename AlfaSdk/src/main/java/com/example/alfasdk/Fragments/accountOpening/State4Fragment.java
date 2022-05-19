@@ -20,6 +20,7 @@ import com.example.alfasdk.Models.AccountOpening.AccountOpeningObject;
 import com.example.alfasdk.R;
 import com.example.alfasdk.Util.Util;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 
 public class State4Fragment extends Fragment implements View.OnClickListener {
@@ -29,11 +30,15 @@ public class State4Fragment extends Fragment implements View.OnClickListener {
     private ImageView ivBack;
     private TextView tvTitle;
     private TextInputEditText etAccountName;
+
     private TextInputEditText etBankName;
+    private TextInputLayout textInputLayoutBankName;
+
     private TextInputEditText etIbanNumber;
-//    private TextInputEditText etBranchName;
-//    private TextInputEditText etBranchCode;
-//    private TextInputEditText etBranchAddress;
+    private TextInputLayout textInputLayoutIbanNumber;
+
+    private TextInputEditText etBranchCode;
+    private TextInputEditText etBranchAddress;
 
     private AccountOpeningObject obj;
     private RadioGroup radioGroup;
@@ -53,29 +58,31 @@ public class State4Fragment extends Fragment implements View.OnClickListener {
         setData();
     }
 
+
     private void initViews(View view) {
         obj = ((AccountOpeningActivity) requireActivity()).accountOpeningObject;
 
         ivBack = view.findViewById(R.id.ivBack);
         tvTitle = view.findViewById(R.id.tvTitle);
         etAccountName = view.findViewById(R.id.etAccountName);
+
         etBankName = view.findViewById(R.id.etBankName);
+        textInputLayoutBankName = view.findViewById(R.id.textInputLayoutBankName);
+
         etIbanNumber = view.findViewById(R.id.etIbanNumber);
-//        etBranchName = view.findViewById(R.id.etBranchName);
-//        etBranchCode = view.findViewById(R.id.etBranchCode);
-//        etBranchAddress = view.findViewById(R.id.etBranchAddress);
+        textInputLayoutIbanNumber = view.findViewById(R.id.textInputLayoutIbanNumber);
+
+        etBranchCode = view.findViewById(R.id.etBranchCode);
+        etBranchAddress = view.findViewById(R.id.etBranchAddress);
         radioGroup = view.findViewById(R.id.radioGroup);
         btnNext = view.findViewById(R.id.btnNext);
 
 
-        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int checkId) {
-                if(checkId==R.id.radio1){
-                    obj.setNOMINEE("Y");
-                }else{
-                    obj.setNOMINEE("N");
-                }
+        radioGroup.setOnCheckedChangeListener((radioGroup, checkId) -> {
+            if(checkId==R.id.radio1){
+                obj.setNOMINEE("Y");
+            }else{
+                obj.setNOMINEE("N");
             }
         });
 
@@ -84,13 +91,13 @@ public class State4Fragment extends Fragment implements View.OnClickListener {
 
     }
 
+
     private void setData() {
+        obj.setNOMINEE("N");
         etBankName.setText(obj.getBANKNAME());
         etIbanNumber.setText(obj.getIBAN());
-        obj.setNOMINEE("Y");
-//        etBranchName.setText(obj.getBRANCHNAME());
-//        etBranchCode.setText(obj.getBRANCHCODE());
-//        etBranchAddress.setText(obj.getBRANCHADDRESS());
+        etBranchCode.setText(obj.getBRANCHCODE());
+        etBranchAddress.setText(obj.getBRANCHADDRESS());
 
         setInputsEditAble();
 
@@ -99,10 +106,14 @@ public class State4Fragment extends Fragment implements View.OnClickListener {
     private void setInputsEditAble() {
         if(obj.getBANKNAME().isEmpty() || obj.getBANKNAME()==null){
             Util.setInputEditable(etBankName, true);
+        }else{
+            textInputLayoutBankName.setVisibility(View.GONE);
         }
 
         if(obj.getIBAN().isEmpty() || obj.getIBAN()==null){
             Util.setInputEditable(etIbanNumber, true);
+        }else{
+            textInputLayoutIbanNumber.setVisibility(View.GONE);
         }
     }
 

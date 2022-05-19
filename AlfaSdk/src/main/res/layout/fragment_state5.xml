@@ -27,16 +27,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_14sdp"
-            android:layout_marginTop="@dimen/_47sdp"
+            android:layout_marginTop="@dimen/_57sdp"
             android:layout_marginEnd="@dimen/_14sdp"
             android:gravity="start"
-            android:text="Nominee"
+            android:text="Nominee Details"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            android:textSize="@dimen/_12ssp"
+            android:textSize="@dimen/_16ssp"
             android:textStyle="bold" />
 
         <TextView
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tvTitle"

@@ -23,6 +23,8 @@ import com.example.alfasdk.Util.Util;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.util.ArrayList;
+
 
 public class State6Fragment extends Fragment implements View.OnClickListener {
 
@@ -39,8 +41,9 @@ public class State6Fragment extends Fragment implements View.OnClickListener {
     private TextInputEditText etEmployerName;
     private TextInputEditText etJobTitle;
     private TextInputEditText etDepartment;
-    private TextInputEditText etEmployerBusiness;
-    TextInputLayout textInputLayoutEmployerName, textInputLayoutEmployerJobTitle, textInputLayoutEmployerDepartment, textInputLayoutEmployerAddress;
+    private TextInputEditText etEmployerAddress;
+    private TextInputEditText etZakatStatus;
+    TextInputLayout textInputLayoutEmployerName, textInputLayoutEmployerJobTitle, textInputLayoutEmployerDepartment, textInputLayoutEmployerAddress, textInputLayoutZakatStatus;
     private Button btnNext;
 
     private AccountOpeningObject obj;
@@ -86,11 +89,13 @@ public class State6Fragment extends Fragment implements View.OnClickListener {
         etEmployerName = view.findViewById(R.id.etEmployerName);
         etJobTitle = view.findViewById(R.id.etJobTitle);
         etDepartment = view.findViewById(R.id.etDepartment);
-        etEmployerBusiness = view.findViewById(R.id.etEmployerBusiness);
+        etEmployerAddress = view.findViewById(R.id.etEmployerAddress);
+        etZakatStatus = view.findViewById(R.id.etZakatStatus);
         textInputLayoutEmployerName = view.findViewById(R.id.textInputLayoutEmployerName);
         textInputLayoutEmployerJobTitle = view.findViewById(R.id.textInputLayoutEmployerJobTitle);
         textInputLayoutEmployerDepartment = view.findViewById(R.id.textInputLayoutEmployerDepartment);
         textInputLayoutEmployerAddress = view.findViewById(R.id.textInputLayoutEmployerAddress);
+        textInputLayoutZakatStatus = view.findViewById(R.id.textInputLayoutZakatStatus);
 
 
         btnNext = view.findViewById(R.id.btnNext);
@@ -124,6 +129,7 @@ public class State6Fragment extends Fragment implements View.OnClickListener {
     private void setData() {
         obj = ((AccountOpeningActivity) requireActivity()).accountOpeningObject;
         atvOccupation.setText(obj.getOCCUPATION());
+        etZakatStatus.setText(obj.getZAKATSTATUS());
 
         if(obj.getOCCUPATION().equals("Housewife") || obj.getOCCUPATION().equals("Household")){
             disableEmployerFields();
@@ -156,6 +162,7 @@ public class State6Fragment extends Fragment implements View.OnClickListener {
         textInputLayoutEmployerDepartment.setVisibility(View.VISIBLE);
         textInputLayoutEmployerAddress.setVisibility(View.VISIBLE);
     }
+
     private void disableEmployerFields(){
         isEmployerNameEnabled=false;
         isJobTitleEnabled=false;
@@ -225,8 +232,8 @@ public class State6Fragment extends Fragment implements View.OnClickListener {
         }
 
         if(etIncomeSource.getText().toString().isEmpty()){
-            //Show Alert
-            Util.setInputError(etIncomeSource);
+            etIncomeSource.setError("Please enter source of income.");
+            etIncomeSource.requestFocus();
             return false;
         }else{
             obj.setSOURCEOFINCOME(etIncomeSource.getText().toString());
@@ -234,7 +241,8 @@ public class State6Fragment extends Fragment implements View.OnClickListener {
 
         if(isEmployerNameEnabled){
             if(etEmployerName.getText().toString().isEmpty()){
-                Util.setInputError(etEmployerName);
+                etEmployerName.setError("Please enter name of employer / Business.");
+                etEmployerName.requestFocus();
                 return false;
             }else{
                 obj.setEMPLOYERNAME(etEmployerName.getText().toString());
@@ -245,7 +253,8 @@ public class State6Fragment extends Fragment implements View.OnClickListener {
 
         if(isJobTitleEnabled){
             if(etJobTitle.getText().toString().isEmpty()){
-                Util.setInputError(etJobTitle);
+                etJobTitle.setError("Please enter Job title / Designation.");
+                etJobTitle.requestFocus();
                 return false;
             }else{
                 obj.setJOBTITLE(etJobTitle.getText().toString());
@@ -256,7 +265,8 @@ public class State6Fragment extends Fragment implements View.OnClickListener {
 
         if(isDepartmentEnabledEnabled){
             if(etDepartment.getText().toString().isEmpty()){
-                Util.setInputError(etDepartment);
+                etDepartment.setError("Please enter department.");
+                etDepartment.requestFocus();
                 return false;
             }else{
                 obj.setDEPARTMENT(etDepartment.getText().toString());
@@ -266,11 +276,12 @@ public class State6Fragment extends Fragment implements View.OnClickListener {
         }
 
         if(isEmployerAddressEnabled){
-            if(etEmployerBusiness.getText().toString().isEmpty()){
-                Util.setInputError(etEmployerBusiness);
+            if(etEmployerAddress.getText().toString().isEmpty()){
+                etEmployerAddress.setError("Please enter address of employer.");
+                etEmployerAddress.requestFocus();
                 return false;
             }else{
-                obj.setEMPLOYERADDRESS(etEmployerBusiness.getText().toString());
+                obj.setEMPLOYERADDRESS(etEmployerAddress.getText().toString());
             }
         }else{
             obj.setEMPLOYERADDRESS("");

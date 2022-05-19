@@ -27,16 +27,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_14sdp"
-            android:layout_marginTop="@dimen/_47sdp"
+            android:layout_marginTop="@dimen/_57sdp"
             android:layout_marginEnd="@dimen/_14sdp"
             android:gravity="start"
-            android:text="Required"
+            android:text="Required Attachments"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            android:textSize="@dimen/_12ssp"
+            android:textSize="@dimen/_16ssp"
             android:textStyle="bold" />
 
         <TextView
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tvTitle"
@@ -76,6 +77,7 @@
                 android:layout_height="wrap_content">
 
                 <RelativeLayout
+                    android:id="@+id/rlCnicFront"
                     android:paddingStart="@dimen/_8sdp"
                     android:paddingEnd="@dimen/_5sdp"
                     android:background="@drawable/bg_bordered_shape"
@@ -143,6 +145,7 @@
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:id="@+id/rlCnicBack"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:paddingStart="@dimen/_8sdp"
                     android:paddingEnd="@dimen/_5sdp"

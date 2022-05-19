@@ -195,7 +195,7 @@ public class TradeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (ordTypes != null && ordTypes.size() > 0) {
-                    showPickerOrderType(view);
+                    showPickerOrderType(v);
                 }
             }
         });

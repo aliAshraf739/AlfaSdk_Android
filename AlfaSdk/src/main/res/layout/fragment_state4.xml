@@ -27,16 +27,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_14sdp"
-            android:layout_marginTop="@dimen/_47sdp"
+            android:layout_marginTop="@dimen/_57sdp"
             android:layout_marginEnd="@dimen/_14sdp"
             android:gravity="start"
-            android:text="Bank"
+            android:text="Bank Details"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            android:textSize="@dimen/_12ssp"
+            android:textSize="@dimen/_16ssp"
             android:textStyle="bold" />
 
         <TextView
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tvTitle"
@@ -96,6 +97,7 @@
 
                     <!--Bank Name-->
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textInputLayoutBankName"
                         style="@style/TextInputLayoutStyle"
                         android:hint="Bank Name"
                         android:layout_width="match_parent"
@@ -112,6 +114,7 @@
 
                     <!--IBAN Number-->
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textInputLayoutIbanNumber"
                         style="@style/TextInputLayoutStyle"
                         android:hint="IBAN Number"
                         android:layout_width="match_parent"
@@ -119,7 +122,7 @@
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/etIbanNumber"
                             android:maxLength="24"
-                            android:inputType="number"
+                            android:inputType="textPhonetic"
                             android:focusable="false"
                             android:cursorVisible="false"
                             android:focusableInTouchMode="false"
@@ -144,8 +147,8 @@
 
                     <!--Branch Code-->
                     <com.google.android.material.textfield.TextInputLayout
-                        style="@style/TextInputLayoutStyle"
                         android:visibility="gone"
+                        style="@style/TextInputLayoutStyle"
                         android:hint="Branch Code"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_40sdp">
@@ -160,8 +163,8 @@
 
                     <!--Branch Address-->
                     <com.google.android.material.textfield.TextInputLayout
-                        style="@style/TextInputLayoutStyle"
                         android:visibility="gone"
+                        style="@style/TextInputLayoutStyle"
                         android:hint="Branch Address"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_40sdp">
@@ -186,7 +189,7 @@
                     android:layout_height="wrap_content"/>
                 <RadioGroup
                     android:id="@+id/radioGroup"
-                    android:checkedButton="@id/radio1"
+                    android:checkedButton="@id/radio2"
                     android:layout_marginStart="@dimen/_12sdp"
                     android:layout_marginEnd="@dimen/_12sdp"
                     android:orientation="horizontal"

@@ -22,6 +22,7 @@ import com.example.alfasdk.Util.Alert;
 import com.example.alfasdk.Util.MyDatePickerDialog;
 import com.example.alfasdk.Util.Util;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.Calendar;
 
@@ -33,11 +34,21 @@ public class State1Fragment extends Fragment implements View.OnClickListener {
     private TextView tvTitle;
     private AutoCompleteTextView atvTitle;
     private TextInputEditText etName;
+    private TextInputLayout textInputLayoutName;
+
     private TextInputEditText etFatherName;
+    private TextInputLayout textInputLayoutFatherName;
+
     private TextInputEditText etBirthDate;
+
     private TextInputEditText etNationality;
+    private TextInputLayout textInputLayoutNationality;
+
     private AutoCompleteTextView atvMartialStatus;
+    private TextInputLayout textInputLayoutMaritalStatus;
+
     private AutoCompleteTextView atvResidentialStatus;
+
     private Button btnNext;
 
     private AccountOpeningObject obj;
@@ -73,11 +84,21 @@ public class State1Fragment extends Fragment implements View.OnClickListener {
         ivBack = view.findViewById(R.id.ivBack);
         tvTitle = view.findViewById(R.id.tvTitle);
         atvTitle = view.findViewById(R.id.atvTitle);
+
         etName = view.findViewById(R.id.etName);
+        textInputLayoutName = view.findViewById(R.id.textInputLayoutName);
+
         etFatherName = view.findViewById(R.id.etFatherName);
+        textInputLayoutFatherName = view.findViewById(R.id.textInputLayoutFatherName);
+
         etBirthDate = view.findViewById(R.id.etBirthDate);
+
         etNationality = view.findViewById(R.id.etNationality);
+        textInputLayoutNationality = view.findViewById(R.id.textInputLayoutNationality);
+
         atvMartialStatus = view.findViewById(R.id.atvMartialStatus);
+        textInputLayoutMaritalStatus = view.findViewById(R.id.textInputLayoutMaritalStatus);
+
         atvResidentialStatus = view.findViewById(R.id.atvResidentialStatus);
         btnNext = view.findViewById(R.id.btnNext);
 
@@ -107,8 +128,13 @@ public class State1Fragment extends Fragment implements View.OnClickListener {
         etName.setText(obj.getNAME());
         etFatherName.setText(obj.getFATHERHUSBANDNAME());
         etBirthDate.setText(obj.getDATEOFBIRTH());
-        etNationality.setText("Pakistani");
         atvResidentialStatus.setText("Pakistani");
+
+        if(obj.getNATIONALITY().isEmpty() || obj.getNATIONALITY()==null){
+            etNationality.setText("Pakistani");
+        }else{
+            etNationality.setText(obj.getNATIONALITY());
+        }
 
         if(obj.getMARITALSTATUS().equals("S")){
             atvMartialStatus.setText("Single");
@@ -135,17 +161,29 @@ public class State1Fragment extends Fragment implements View.OnClickListener {
         if(etName.getText().toString().isEmpty()){
             Util.setInputEditable(etName, true);
         }
+        else{
+            textInputLayoutName.setVisibility(View.GONE);
+        }
 
         if(etFatherName.getText().toString().isEmpty()){
             Util.setInputEditable(etFatherName, true);
         }
-
-        if(obj.getDATEOFBIRTH().isEmpty() || obj.getDATEOFBIRTH()==null){
-            isBirthDateEnabled = true;
+        else{
+            textInputLayoutFatherName.setVisibility(View.GONE);
         }
+
+        //        if(obj.getDATEOFBIRTH().isEmpty() || obj.getDATEOFBIRTH()==null){
+//            isBirthDateEnabled = true;
+//        }
 
         if(obj.getMARITALSTATUS().isEmpty() || obj.getMARITALSTATUS()==null){
             isMartialStatusEnabled=true;
+        }else{
+            textInputLayoutMaritalStatus.setVisibility(View.GONE);
+        }
+
+        if(!atvResidentialStatus.getText().toString().isEmpty()){
+            etNationality.setVisibility(View.GONE);
         }
 
     }
@@ -181,10 +219,9 @@ public class State1Fragment extends Fragment implements View.OnClickListener {
         dialog.setTitle("Select Date");
         dialog.showDatePicker((view, year, month, dayOfMonth) -> {
             //Date select callback
-            textInputEditText.setText(dayOfMonth+"/"+month+"/"+year);
+            textInputEditText.setText(dayOfMonth+"/"+(month+1)+"/"+year);
         }, Calendar.getInstance());
     }
-
 
     private Boolean isValidInputs() {
 
@@ -200,20 +237,33 @@ public class State1Fragment extends Fragment implements View.OnClickListener {
             obj.setNAME(etName.getText().toString());
         }
 
+        if(!Util.checkAlphabetValidity(etName)){
+            etName.setError("Name must contain only letters.");
+            etName.requestFocus();
+            return false;
+        }
+
         if(etFatherName.getText().toString().isEmpty()){
-            Util.setInputError(etFatherName);
+            etFatherName.setError("Please enter father/husband's name.");
+            etFatherName.requestFocus();
             return false;
         }else{
             obj.setFATHERHUSBANDNAME(etFatherName.getText().toString());
         }
 
-        if(etBirthDate.getText().toString().isEmpty()){
-            //Show Alert
-            Alert.show(requireActivity(), "", "Please select your Date of Birth.");
+        if(!Util.checkAlphabetValidity(etFatherName)){
+            etFatherName.setError("Father/Husband name must contain only letters.");
+            etFatherName.requestFocus();
             return false;
-        }else{
-            obj.setDATEOFBIRTH(etBirthDate.getText().toString());
         }
+
+//        if(etBirthDate.getText().toString().isEmpty()){
+//            //Show Alert
+//            Alert.show(requireActivity(), "", "Please select your Date of Birth.");
+//            return false;
+//        }else{
+//            obj.setDATEOFBIRTH(etBirthDate.getText().toString());
+//        }
 
         if(etNationality.getText().toString().isEmpty()){
             //Show Alert
@@ -250,4 +300,5 @@ public class State1Fragment extends Fragment implements View.OnClickListener {
         super.onStart();
         ((AccountOpeningActivity) requireActivity()).stepView.go(0, true);
     }
+
 }

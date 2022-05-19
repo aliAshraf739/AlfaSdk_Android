@@ -104,10 +104,14 @@ public class Constants {
     public static final String ACCOUNT_OPENING_BASE_URL = "http://203.101.171.179:8080/";
 
 
-//    public static String[] serverIpAddress = { "terminal1.alfalahtrade.com", "terminal1.alfalahtrade.com "};
+    //Live
     public static String[] serverIpAddress = { "203.101.171.179", "203.101.171.179 "};
-//    public static int[] ports = {5678,5679};
     public static int[] ports = {5678};
+
+    //Local
+//    public static String[] serverIpAddress = { "192.168.0.188", "192.168.0.188"};
+//    public static int[] ports = {5678};
+
 
     public static final String KASB_API_LOGIN = "";
     public  static final String RESEARCH_PORTAL_URL="http://www.e-falah.com/api/v2/service/authenticate";
@@ -117,10 +121,5 @@ public class Constants {
     public  static  String SYMBOL_RESPONSE="";
     public  static  String MARKET_RESPONSE="";
 
-    /**
-     * UnComment following block for local server
-     **/
-//    public static final String KASB_API_LOGIN = "";
-//    public static String[] serverIpAddress = {"192.168.0.245", "192.168.0.240"};
-//    public static int[] ports = {5678, 5678};
+
 }

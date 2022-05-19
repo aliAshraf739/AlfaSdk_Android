@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.text.InputFilter;
+import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,7 +29,11 @@ import com.example.alfasdk.Util.Util;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 
 public class State5Fragment extends Fragment implements View.OnClickListener {
@@ -91,11 +96,13 @@ public class State5Fragment extends Fragment implements View.OnClickListener {
         atvIdentificationType.setOnItemClickListener((adapterView, view1, i, l) -> {
             Log.e(TAG, "initViews: ");
             if(mListIdentificationTypes[i].equals("CNIC") || mListIdentificationTypes[i].equals("SNIC")){
+                etCnicPassportNumber.setInputType(InputType.TYPE_CLASS_NUMBER);
                 setMaxLength(etCnicPassportNumber, 13);
                 isPlaceOfIssueEnabled = false;
                 textInputLayoutPlace.setVisibility(View.GONE);
                 obj.setUINTYPENMN(mListIdentificationTypes[i]);
             }else{
+                etCnicPassportNumber.setInputType(InputType.TYPE_CLASS_TEXT);
                 setMaxLength(etCnicPassportNumber, 25);
                 isPlaceOfIssueEnabled = true;
                 textInputLayoutPlace.setVisibility(View.VISIBLE);
@@ -159,23 +166,23 @@ public class State5Fragment extends Fragment implements View.OnClickListener {
         dialog.setTitle("Select Date");
         dialog.showDatePicker((view, year, month, dayOfMonth) -> {
             //Date select callback
-            textInputEditText.setText(dayOfMonth+"/"+month+"/"+year);
+            textInputEditText.setText(Util.getFormattedDate(dayOfMonth, month, year));
         }, Calendar.getInstance());
     }
 
     private Boolean isValidInputs() {
 
         if(etName.getText().toString().isEmpty()){
-            //Util.setInputEditable(etCnicPassportNumber,true);
-            Util.setInputError(etName);
+            etName.setError("Please enter your name.");
+            etName.requestFocus();
             return false;
         }else{
             obj.setNAMENMN(etName.getText().toString());
         }
 
         if(etRelationShip.getText().toString().isEmpty()){
-            //Util.setInputEditable(etCnicPassportNumber,true);
-            Util.setInputError(etRelationShip);
+            etRelationShip.setError("Please enter relationship with the applicant.");
+            etRelationShip.requestFocus();
             return false;
         }else{
             obj.setRELATIONSHIPNMN(etRelationShip.getText().toString());
@@ -211,7 +218,28 @@ public class State5Fragment extends Fragment implements View.OnClickListener {
                 Alert.show(requireActivity(), "", "Please select an Expiry Date.");
                 return false;
             }else{
-                obj.setCNICEXPIRYDATENMN(etExpiryDate.getText().toString());
+                String issueDate = etIssueDate.getText().toString();
+                String expiryDate = etExpiryDate.getText().toString();
+
+                if(Util.isExpiryDateBeforeToday(expiryDate)){
+                    Alert.show(requireActivity(), "", "Expiry date can not be earlier than today.");
+                    return false;
+                }else{
+                    int compareResult = compareDates(issueDate, expiryDate);
+                    if(compareResult == 0){
+                        Log.e(TAG, "isValidInputs: "+ issueDate);
+                        Log.e(TAG, "isValidInputs: "+ expiryDate);
+                        Alert.show(requireActivity(), "", "Issue and Expiry dates can not be same.");
+                        return false;
+                    }
+                    else if(compareResult == 1){
+                        Alert.show(requireActivity(), "", "Issue date can not be greater than Expiry date.");
+                        return false;
+                    }
+                    else{
+                        obj.setCNICEXPIRYDATENMN(etExpiryDate.getText().toString());
+                    }
+                }
             }
         }else{
             obj.setCNICEXPIRYDATENMN("");
@@ -230,6 +258,31 @@ public class State5Fragment extends Fragment implements View.OnClickListener {
         }
 
         return true;
+    }
+
+    private int compareDates(String issueDate, String expiryDate) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+        Calendar calendar1 = Calendar.getInstance();
+        Calendar calendar2 = Calendar.getInstance();
+
+        Date date1 = null;
+        try {
+            date1 = dateFormat.parse(issueDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        Date date2 = null;
+        try {
+            date2 = dateFormat.parse(expiryDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        if(date1!=null && date2!=null){
+            calendar1.setTime(date1);
+            calendar2.setTime(date2);
+        }
+        return calendar1.compareTo(calendar2);
     }
 
     @Override

@@ -27,26 +27,28 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_14sdp"
-            android:layout_marginTop="@dimen/_47sdp"
+            android:layout_marginTop="@dimen/_57sdp"
             android:layout_marginEnd="@dimen/_14sdp"
             android:gravity="start"
-            android:text="Other"
+            android:text="Other Information"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            android:textSize="@dimen/_12ssp"
+            android:textSize="@dimen/_16ssp"
             android:textStyle="bold" />
+
         <TextView
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/tvTitle"
+            android:layout_marginStart="@dimen/_14sdp"
+            android:layout_marginEnd="@dimen/_14sdp"
             android:gravity="start"
             android:text="Information"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="@dimen/_16ssp"
-            android:textStyle="bold"
-            android:layout_below="@+id/tvTitle"
-            android:layout_marginStart="@dimen/_14sdp"
-            android:layout_marginEnd="@dimen/_14sdp"/>
+            android:textStyle="bold" />
 
     </RelativeLayout>
     <androidx.cardview.widget.CardView
@@ -189,7 +191,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_40sdp">
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etEmployerBusiness"
+                        android:id="@+id/etEmployerAddress"
                         android:inputType="text"
                         android:maxLength="120"
                         style="@style/AppTheme.EditText"/>
@@ -197,8 +199,9 @@
 
                 <!--Zakat Status-->
                 <com.google.android.material.textfield.TextInputLayout
-                    style="@style/TextInputLayoutStyle"
                     android:visibility="gone"
+                    android:id="@+id/textInputLayoutZakatStatus"
+                    style="@style/TextInputLayoutStyle"
                     android:hint="Zakat Status"
                     app:endIconDrawable="@drawable/ic_drop_down"
                     app:endIconTint="@color/alfaRed"

@@ -21,9 +21,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Developed by Hasham.Tahir on 7/25/2016.
- */
+
 public class MessageServerThread extends HandlerThread {
 
     private static MessageServerThread instance;
@@ -134,4 +132,5 @@ public class MessageServerThread extends HandlerThread {
         intent.putExtra("response", response);
         LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
     }
+
 }

@@ -23,9 +23,7 @@ import java.util.TimerTask;
 
 import static android.content.ContentValues.TAG;
 
-/**
- * Developed by Hasham.Tahir on 7/26/2016.
- */
+
 public class MessageServerReadThread extends HandlerThread {
 
     private static MessageServerReadThread instance;

@@ -2,8 +2,10 @@ package com.example.alfasdk.Fragments.accountOpening;
 
 import android.Manifest;
 import android.app.Activity;
-import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -25,6 +27,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
+import com.bumptech.glide.request.target.CustomTarget;
+import com.bumptech.glide.request.target.Target;
+import com.bumptech.glide.request.transition.Transition;
 import com.example.alfasdk.AccountOpeningActivity;
 import com.example.alfasdk.Const.ConnectionDetector;
 import com.example.alfasdk.Const.Constants;
@@ -37,7 +47,6 @@ import com.example.alfasdk.Util.FileMetaData;
 import com.example.alfasdk.Util.Loading;
 import com.example.alfasdk.Util.Util;
 import com.github.dhaval2404.imagepicker.ImagePicker;
-import com.google.gson.Gson;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionDeniedResponse;
@@ -63,12 +72,14 @@ public class State10Fragment extends Fragment implements View.OnClickListener {
     private TextView tvFileName1;
     private ImageView ivAdd1;
     private ImageView ivRemove1;
-    
+    private RelativeLayout rlCnicFront;
+
     private ImageView ivCnicBack;
     private TextView tvFileName2;
     private ImageView ivAdd2;
     private ImageView ivRemove2;
-    
+    private RelativeLayout rlCnicBack;
+
     //    private ImageView ivApplicantSignature;
 //    private TextView tvFileName3;
 //    private ImageView ivAdd3;
@@ -107,6 +118,7 @@ public class State10Fragment extends Fragment implements View.OnClickListener {
     private ImageView ivRemove9;
     private RelativeLayout rlNomineeBack;
 
+
     //
 //    private ImageView ivForm;
 //    private TextView tvFileName10;
@@ -125,7 +137,9 @@ public class State10Fragment extends Fragment implements View.OnClickListener {
     private Boolean isNmnCnicFrontEnabled = false;
     private Boolean isNmnCnicBackEnabled = false;
     private Boolean isZakatFormEnabled = false;
-    private Uri proofCnicFront, proofCnicBack, proofResidentialAddress, proofNmnCnicFront, proofNmnCnicBack, proofZakatDecalration;
+    private Uri proofCnicFront, proofCnicBack, proof, proofResidentialAddress, proofNmnCnicFront, proofNmnCnicBack, proofZakatDecalration;
+
+    Boolean isCnicFrontImageLoaded = false, isCnicBackImageLoaded = false;
 
 
     @Override
@@ -152,11 +166,13 @@ public class State10Fragment extends Fragment implements View.OnClickListener {
         tvFileName1 = view.findViewById(R.id.tvFileName1);
         ivAdd1 = view.findViewById(R.id.ivAdd1);
         ivRemove1 = view.findViewById(R.id.ivRemove1);
+        rlCnicFront = view.findViewById(R.id.rlCnicFront);
 
         ivCnicBack = view.findViewById(R.id.ivCnicBack);
         tvFileName2 = view.findViewById(R.id.tvFileName2);
         ivAdd2 = view.findViewById(R.id.ivAdd2);
         ivRemove2 = view.findViewById(R.id.ivRemove2);
+        rlCnicBack = view.findViewById(R.id.rlCnicBack);
 
         //        ivApplicantSignature = view.findViewById(R.id.ivApplicantSignature);
 //        tvFileName3 = view.findViewById(R.id.tvFileName3);
@@ -243,26 +259,28 @@ public class State10Fragment extends Fragment implements View.OnClickListener {
 
         if(accountOpeningObject.getCNICFRONT().isEmpty() || accountOpeningObject.getCNICFRONT()==null){
             isCnicFrontEnabled = true;
+            isCnicFrontImageLoaded = true;
             ivAdd1.setVisibility(View.VISIBLE);
             tvFileName1.setVisibility(View.VISIBLE);
         }else{
-            Glide.with(requireActivity())
-                    .load(accountOpeningObject.getCNICFRONT()+"")
-                    .centerCrop()
-                    .placeholder(R.drawable.image)
-                    .into(ivCnicFront);
+            rlCnicFront.setVisibility(View.GONE);
+            Bitmap cnicFrontBitmap = Util.decodeImage(accountOpeningObject.getCNICFRONT());
+            if(cnicFrontBitmap!=null){
+                ivCnicFront.setImageBitmap(cnicFrontBitmap);
+            }
         }
 
         if(accountOpeningObject.getCNICBACK().isEmpty() || accountOpeningObject.getCNICBACK()==null){
             isCnicBackEnabled = true;
+            isCnicBackImageLoaded = true;
             ivAdd2.setVisibility(View.VISIBLE);
             tvFileName2.setVisibility(View.VISIBLE);
         }else{
-            Glide.with(requireActivity())
-                    .load(accountOpeningObject.getCNICBACK()+"")
-                    .centerCrop()
-                    .placeholder(R.drawable.image)
-                    .into(ivCnicBack);
+            rlCnicBack.setVisibility(View.GONE);
+            Bitmap cnicBackBitmap = Util.decodeImage(accountOpeningObject.getCNICBACK());
+            if(cnicBackBitmap!=null){
+                ivCnicBack.setImageBitmap(cnicBackBitmap);
+            }
         }
 
         if(accountOpeningObject.getNOMINEE().equals("Y")){
@@ -284,6 +302,13 @@ public class State10Fragment extends Fragment implements View.OnClickListener {
             rlZakatForm.setVisibility(View.GONE);
         }
 
+    }
+
+    private void dismissProgressBar() {
+        if(isCnicFrontImageLoaded && isCnicBackImageLoaded){
+            //dismiss progressbar
+            loading.dismiss();
+        }
     }
 
     @Override
@@ -435,31 +460,30 @@ public class State10Fragment extends Fragment implements View.OnClickListener {
 
     private boolean validateData() {
 
-        if(proofCnicFront==null){
-            Alert.show(requireActivity(), "", "Please attach proof of your CNIC Front.");
-            return false;
-        }else{
-            String encodedImage = Util.convertImageToBase64(proofCnicFront, requireActivity());
-            accountOpeningObject.setCNICFRONT(encodedImage);
-            //Log.e(TAG, "CNIC Front Proof: "+ encodedImage);
+        if(accountOpeningObject.getCNICFRONT().isEmpty() || accountOpeningObject.getCNICFRONT()==null){
+            if(proofCnicFront==null){
+                Alert.show(requireActivity(), "", "Please attach proof of your CNIC Front.");
+                return false;
+            }else{
+                String encodedImage = Util.convertUriToBase64(proofCnicFront, requireActivity());
+                accountOpeningObject.setCNICFRONT(encodedImage);
+            }
         }
 
         if(proofCnicBack==null){
             Alert.show(requireActivity(), "", "Please attach proof of your CNIC Back.");
             return false;
         }else{
-            String encodedImage = Util.convertImageToBase64(proofCnicBack, requireActivity());
+            String encodedImage = Util.convertUriToBase64(proofCnicBack, requireActivity());
             accountOpeningObject.setCNICBACK(encodedImage);
-            //Log.e(TAG, "CNIC Back Proof: "+ encodedImage);
         }
 
         if(proofResidentialAddress==null){
             Alert.show(requireActivity(), "", "Please attach proof of your Residential Address.");
             return false;
         }else{
-            String encodedImage = Util.convertImageToBase64(proofResidentialAddress, requireActivity());
+            String encodedImage = Util.convertUriToBase64(proofResidentialAddress, requireActivity());
             accountOpeningObject.setRESDOC1(encodedImage);
-            //Log.e(TAG, "Residential Address Proof: "+ encodedImage);
         }
 
         if(isZakatFormEnabled){
@@ -467,7 +491,7 @@ public class State10Fragment extends Fragment implements View.OnClickListener {
                 Alert.show(requireActivity(), "", "Please attach proof of Zakat Declaration.");
                 return false;
             }else{
-                String encodedImage = Util.convertImageToBase64(proofZakatDecalration, requireActivity());
+                String encodedImage = Util.convertUriToBase64(proofZakatDecalration, requireActivity());
                 accountOpeningObject.setZAKAATDECLARATION(encodedImage);
             }
         }else{
@@ -479,7 +503,7 @@ public class State10Fragment extends Fragment implements View.OnClickListener {
                 Alert.show(requireActivity(), "", "Please attach proof of Nominee CNIC Front.");
                 return false;
             }else{
-                String encodedImage = Util.convertImageToBase64(proofNmnCnicFront, requireActivity());
+                String encodedImage = Util.convertUriToBase64(proofNmnCnicFront, requireActivity());
                 accountOpeningObject.setCNICNMNFRONT(encodedImage);
                 //Log.e(TAG, "Nominee CNIC Front: "+ encodedImage);
             }
@@ -492,14 +516,13 @@ public class State10Fragment extends Fragment implements View.OnClickListener {
                 Alert.show(requireActivity(), "", "Please attach proof of Nominee CNIC Back.");
                 return false;
             }else{
-                String encodedImage = Util.convertImageToBase64(proofNmnCnicBack, requireActivity());
+                String encodedImage = Util.convertUriToBase64(proofNmnCnicBack, requireActivity());
                 accountOpeningObject.setCNICNMNBACK(encodedImage);
                 //Log.e(TAG, "Nominee CNIC Back: "+ encodedImage);
             }
         }else{
             accountOpeningObject.setCNICNMNBACK("");
         }
-
 
         if(!checkbox.isChecked()){
             Alert.show(requireActivity(), "", "Please check Terms of Service and Privacy Policy.");
@@ -508,6 +531,7 @@ public class State10Fragment extends Fragment implements View.OnClickListener {
 
         return true;
     }
+
 
     private void checkPermission(int i) {
         Dexter.withContext(requireActivity())

@@ -11,7 +11,6 @@ public class Loading {
     ProgressDialog pd;
 
     public Loading(Context context, String msg) {
-
         pd = new ProgressDialog(context);
         pd.setMessage(msg);
         pd.setCancelable(false);
@@ -19,15 +18,18 @@ public class Loading {
     }
 
     public void show() {
-
-        pd.show();
+        if(!pd.isShowing()){
+            pd.show();
+        }
     }
 
     public void dismiss() {
-        try {
-            pd.dismiss();
-        } catch (Exception e) {
-            e.printStackTrace();
+        if(pd.isShowing()){
+            try {
+                pd.dismiss();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 

@@ -26,16 +26,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_14sdp"
-            android:layout_marginTop="@dimen/_47sdp"
+            android:layout_marginTop="@dimen/_57sdp"
             android:layout_marginEnd="@dimen/_14sdp"
             android:gravity="start"
-            android:text="Contact"
+            android:text="Contact Details"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            android:textSize="@dimen/_12ssp"
+            android:textSize="@dimen/_16ssp"
             android:textStyle="bold" />
 
         <TextView
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tvTitle"
@@ -76,6 +77,7 @@
 
                 <!--Mailing Address-->
                 <TextView
+                    android:id="@+id/tvMailingAddress"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="start"
@@ -84,6 +86,7 @@
                     android:textSize="@dimen/_12ssp"
                     android:textStyle="bold" />
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayoutMailingAddress"
                     android:layout_marginTop="@dimen/_5sdp"
                     style="@style/TextInputLayoutStyle"
                     android:hint="Address"
@@ -91,6 +94,7 @@
                     android:layout_height="@dimen/_40sdp">
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etMailingAddress"
+                        android:inputType="textPostalAddress"
                         android:maxLength="40"
                         android:focusable="false"
                         android:cursorVisible="false"
@@ -100,6 +104,7 @@
 
                 <!--City/Town/Village-->
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayoutMailingCity"
                     android:layout_marginTop="@dimen/_5sdp"
                     style="@style/TextInputLayoutStyle"
                     android:hint="City / Town / Village"
@@ -107,6 +112,7 @@
                     android:layout_height="@dimen/_40sdp">
                     <AutoCompleteTextView
                         android:id="@+id/atvMailingCity"
+                        android:inputType="text"
                         android:focusable="false"
                         android:cursorVisible="false"
                         android:focusableInTouchMode="false"
@@ -115,6 +121,7 @@
 
                 <!--Province/State-->
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayoutMailingProvince"
                     style="@style/TextInputLayoutStyle"
                     android:hint="Province / State"
                     app:endIconDrawable="@drawable/ic_drop_down"
@@ -132,6 +139,7 @@
 
                 <!--Country-->
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayoutMailingCountry"
                     style="@style/TextInputLayoutStyle"
                     android:hint="Country"
                     app:endIconDrawable="@drawable/ic_drop_down"
@@ -149,12 +157,14 @@
 
                 <!--Tel. (Off)-->
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayoutTelOff"
                     style="@style/TextInputLayoutStyle"
                     android:hint="Tel. (Off)"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_40sdp">
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etTelOff"
+                        android:inputType="phone"
                         android:maxLength="11"
                         android:focusable="false"
                         android:cursorVisible="false"
@@ -164,12 +174,14 @@
 
                 <!--Tel. (Res)-->
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayoutTelRes"
                     style="@style/TextInputLayoutStyle"
                     android:hint="Tel. (Res)"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_40sdp">
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etTelRes"
+                        android:inputType="phone"
                         android:maxLength="11"
                         android:focusable="false"
                         android:cursorVisible="false"
@@ -179,6 +191,7 @@
 
                 <!--Fax-->
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayoutFax"
                     style="@style/TextInputLayoutStyle"
                     android:hint="Fax"
                     android:layout_width="match_parent"
@@ -194,12 +207,14 @@
 
                 <!--Mobile-->
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayoutMobile"
                     style="@style/TextInputLayoutStyle"
                     android:hint="Mobile"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_40sdp">
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etMobile"
+                        android:inputType="phone"
                         android:maxLength="11"
                         android:focusable="false"
                         android:cursorVisible="false"
@@ -209,12 +224,14 @@
 
                 <!--Email-->
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayoutEmail"
                     style="@style/TextInputLayoutStyle"
                     android:hint="Email"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_40sdp">
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etEmail"
+                        android:inputType="textEmailAddress"
                         android:maxLength="60"
                         android:focusable="false"
                         android:cursorVisible="false"
@@ -224,6 +241,7 @@
 
                 <!--Permanent Address-->
                 <TextView
+                    android:id="@+id/tvPermanentAddress"
                     android:layout_marginTop="@dimen/_16sdp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -233,6 +251,7 @@
                     android:textSize="@dimen/_12ssp"
                     android:textStyle="bold" />
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayoutPermanentAddress"
                     android:layout_marginTop="@dimen/_5sdp"
                     style="@style/TextInputLayoutStyle"
                     android:hint="Address"
@@ -240,6 +259,7 @@
                     android:layout_height="@dimen/_40sdp">
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etPermanentAddress"
+                        android:inputType="textPostalAddress"
                         android:maxLength="40"
                         android:focusable="false"
                         android:cursorVisible="false"
@@ -249,6 +269,7 @@
 
                 <!--City/Town/Village-->
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayoutPermanentCity"
                     android:layout_marginTop="@dimen/_5sdp"
                     style="@style/TextInputLayoutStyle"
                     android:hint="City / Town / Village"
@@ -256,6 +277,7 @@
                     android:layout_height="@dimen/_40sdp">
                     <AutoCompleteTextView
                         android:id="@+id/atvPermanentCity"
+                        android:inputType="text"
                         android:focusable="false"
                         android:cursorVisible="false"
                         android:focusableInTouchMode="false"
@@ -264,6 +286,7 @@
 
                 <!--Province/State-->
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayoutPermanentProvince"
                     style="@style/TextInputLayoutStyle"
                     android:hint="Province / State"
                     app:endIconDrawable="@drawable/ic_drop_down"
@@ -281,6 +304,7 @@
 
                 <!--Country-->
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayoutPermanentCountry"
                     style="@style/TextInputLayoutStyle"
                     android:hint="Country"
                     app:endIconDrawable="@drawable/ic_drop_down"

@@ -2,6 +2,7 @@ package com.example.alfasdk.Fragments.accountOpening;
 
 import android.os.Bundle;
 import android.text.InputFilter;
+import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -27,7 +29,11 @@ import com.example.alfasdk.Util.Util;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 public class State2Fragment extends Fragment implements View.OnClickListener {
 
@@ -35,12 +41,21 @@ public class State2Fragment extends Fragment implements View.OnClickListener {
 
     private ImageView ivBack;
     private TextView tvTitle;
+
     private AutoCompleteTextView atvIdentificationType;
+
     private TextInputEditText etCnicPassportNumber;
-    private TextInputEditText etExpiryDate;
+    private TextInputLayout textInputLayoutCnic;
+
     private TextInputEditText etIssueDate;
+    private TextInputLayout textInputLayoutIssueDate;
+
+    private TextInputEditText etExpiryDate;
+    private TextInputLayout textInputLayoutExpiryDate;
+
     private TextInputEditText etIssuePlace;
     private TextInputLayout textInputLayoutPlace;
+
     private CheckBox checkBox;
     private Button btnNext;
 
@@ -68,13 +83,19 @@ public class State2Fragment extends Fragment implements View.OnClickListener {
         ivBack = view.findViewById(R.id.ivBack);
         tvTitle = view.findViewById(R.id.tvTitle);
         atvIdentificationType = view.findViewById(R.id.atvIdentificationType);
+
         etCnicPassportNumber = view.findViewById(R.id.etCnicPassportNumber);
-        etCnicPassportNumber = view.findViewById(R.id.etCnicPassportNumber);
-        etExpiryDate = view.findViewById(R.id.etExpiryDate);
+        textInputLayoutCnic = view.findViewById(R.id.textInputLayoutCnic);
+
         etIssueDate = view.findViewById(R.id.etIssueDate);
-        textInputLayoutPlace = view.findViewById(R.id.textInputLayoutExpiryDate);
+        textInputLayoutIssueDate = view.findViewById(R.id.textInputLayoutIssueDate);
+
+        etExpiryDate = view.findViewById(R.id.etExpiryDate);
+        textInputLayoutExpiryDate = view.findViewById(R.id.textInputLayoutExpiryDate);
+
         etIssuePlace = view.findViewById(R.id.etIssuePlace);
         textInputLayoutPlace = view.findViewById(R.id.textInputLayoutPlace);
+
         checkBox = view.findViewById(R.id.checkBox);
         btnNext = view.findViewById(R.id.btnNext);
 
@@ -87,11 +108,13 @@ public class State2Fragment extends Fragment implements View.OnClickListener {
         atvIdentificationType.setOnItemClickListener((adapterView, view1, i, l) -> {
             Log.e(TAG, "initViews: ");
             if(mListIdentificationTypes[i].equals("CNIC") || mListIdentificationTypes[i].equals("SNIC")){
+                etCnicPassportNumber.setInputType(InputType.TYPE_CLASS_NUMBER);
                 setMaxLength(etCnicPassportNumber, 13);
                 isPlaceOfIssueEnabled = false;
                 textInputLayoutPlace.setVisibility(View.GONE);
                 obj.setUINTYPE(mListIdentificationTypes[i]);
             }else{
+                etCnicPassportNumber.setInputType(InputType.TYPE_CLASS_TEXT);
                 setMaxLength(etCnicPassportNumber, 25);
                 isPlaceOfIssueEnabled = true;
                 textInputLayoutPlace.setVisibility(View.VISIBLE);
@@ -139,15 +162,22 @@ public class State2Fragment extends Fragment implements View.OnClickListener {
 
         if(etCnicPassportNumber.getText().toString().isEmpty()){
             Util.setInputEditable(etCnicPassportNumber, true);
+        }else{
+            textInputLayoutCnic.setVisibility(View.GONE);
         }
 
         if(obj.getISSUEDATE().isEmpty() || obj.getISSUEDATE()==null){
             isIssueDateEnabled = true;
+        }else{
+            textInputLayoutIssueDate.setVisibility(View.GONE);
         }
 
         if(obj.getDATEOFEXPIRY().isEmpty() || obj.getDATEOFEXPIRY()==null){
             checkBox.setEnabled(true);
             isExpiryDateEnabled = true;
+        }else{
+            checkBox.setVisibility(View.GONE);
+            textInputLayoutExpiryDate.setVisibility(View.GONE);
         }
 
     }
@@ -185,7 +215,7 @@ public class State2Fragment extends Fragment implements View.OnClickListener {
         dialog.setTitle("Select Date");
         dialog.showDatePicker((view, year, month, dayOfMonth) -> {
             //Date select callback
-            textInputEditText.setText(dayOfMonth+"/"+month+"/"+year);
+            textInputEditText.setText(Util.getFormattedDate(dayOfMonth, month, year));
         }, Calendar.getInstance());
     }
 
@@ -206,7 +236,7 @@ public class State2Fragment extends Fragment implements View.OnClickListener {
 
         if(etIssueDate.getText().toString().isEmpty()){
             //Show Alert
-            Alert.show(requireActivity(), "", "Please select an Issue Date.");
+            Alert.show(requireActivity(), "", "Please select an Issue date.");
             return false;
         }else{
             obj.setISSUEDATE(etIssueDate.getText().toString());
@@ -215,10 +245,29 @@ public class State2Fragment extends Fragment implements View.OnClickListener {
         if(!checkBox.isChecked()){
             if(etExpiryDate.getText().toString().isEmpty()){
                 //Show Alert
-                Alert.show(requireActivity(), "", "Please select an Expiry Date.");
+                Alert.show(requireActivity(), "", "Please select an Expiry date.");
                 return false;
             }else{
-                obj.setDATEOFEXPIRY(etExpiryDate.getText().toString());
+                String issueDate = etIssueDate.getText().toString();
+                String expiryDate = etExpiryDate.getText().toString();
+
+                if(Util.isExpiryDateBeforeToday(expiryDate)){
+                    Alert.show(requireActivity(), "", "Expiry date can not be earlier than today.");
+                    return false;
+                }else{
+                    int compareResult = compareDates(issueDate, expiryDate);
+                    if(compareResult == 0){
+                        Alert.show(requireActivity(), "", "Issue and Expiry dates can not be same.");
+                        return false;
+                    }
+                    else if(compareResult == 1){
+                        Alert.show(requireActivity(), "", "Issue date can not be greater than Expiry date.");
+                        return false;
+                    }
+                    else{
+                        obj.setDATEOFEXPIRY(etExpiryDate.getText().toString());
+                    }
+                }
             }
         }else{
             obj.setDATEOFEXPIRY("");
@@ -230,13 +279,38 @@ public class State2Fragment extends Fragment implements View.OnClickListener {
                 Util.setInputError(etIssuePlace);
                 return false;
             }else{
-                obj.setISSUEPLACE(atvIdentificationType.getText().toString());
+                obj.setISSUEPLACE(etIssuePlace.getText().toString());
             }
         }else{
             obj.setISSUEPLACE("");
         }
 
         return true;
+    }
+
+    private int compareDates(String issueDate, String expiryDate) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+        Calendar calendar1 = Calendar.getInstance();
+        Calendar calendar2 = Calendar.getInstance();
+
+        Date date1 = null;
+        try {
+            date1 = dateFormat.parse(issueDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        Date date2 = null;
+        try {
+            date2 = dateFormat.parse(expiryDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        if(date1!=null && date2!=null){
+            calendar1.setTime(date1);
+            calendar2.setTime(date2);
+        }
+        return calendar1.compareTo(calendar2);
     }
 
     @Override

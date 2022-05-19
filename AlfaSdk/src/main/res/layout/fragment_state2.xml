@@ -26,16 +26,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_14sdp"
-            android:layout_marginTop="@dimen/_47sdp"
+            android:layout_marginTop="@dimen/_57sdp"
             android:layout_marginEnd="@dimen/_14sdp"
             android:gravity="start"
-            android:text="CNIC / Passport"
+            android:text="CNIC/Passport Details"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            android:textSize="@dimen/_12ssp"
+            android:textSize="@dimen/_16ssp"
             android:textStyle="bold" />
 
         <TextView
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tvTitle"
@@ -93,12 +94,14 @@
 
                 <!--CNIC/Passport Number-->
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayoutCnic"
                     style="@style/TextInputLayoutStyle"
                     android:hint="CNIC/SNIC/Passport"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_40sdp">
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etCnicPassportNumber"
+                        android:inputType="number"
                         android:focusable="false"
                         android:cursorVisible="false"
                         android:focusableInTouchMode="false"
@@ -107,6 +110,7 @@
 
                 <!--Issue Date-->
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayoutIssueDate"
                     style="@style/TextInputLayoutStyle"
                     android:hint="Issue Date"
                     app:endIconDrawable="@drawable/ic_calendar_2"
@@ -124,8 +128,8 @@
 
                 <!--Expiry Date-->
                 <com.google.android.material.textfield.TextInputLayout
-                    style="@style/TextInputLayoutStyle"
                     android:id="@+id/textInputLayoutExpiryDate"
+                    style="@style/TextInputLayoutStyle"
                     android:hint="Expiry Date"
                     app:endIconDrawable="@drawable/ic_calendar_2"
                     app:endIconTint="@color/alfaRed"
@@ -150,11 +154,9 @@
 
                 <!--Place of Issue-->
                 <com.google.android.material.textfield.TextInputLayout
-                    android:layout_marginStart="@dimen/_14sdp"
-                    android:layout_marginEnd="@dimen/_14sdp"
                     android:id="@+id/textInputLayoutPlace"
-                    style="@style/TextInputLayoutStyle"
                     android:visibility="gone"
+                    style="@style/TextInputLayoutStyle"
                     android:hint="Place of Issue"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_40sdp">
