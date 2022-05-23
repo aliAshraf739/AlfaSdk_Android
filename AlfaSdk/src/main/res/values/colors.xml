@@ -38,4 +38,7 @@
     <color name="ledGreen">#00ff00</color>
     <color name="textSymbolDetailColor">#A5A5A5</color>
 
+    <color name="colorSpanningLink">#2b388c</color>
+
+
 </resources>

@@ -756,7 +756,8 @@
                         android:layout_width="@dimen/_24sdp"
                         android:layout_height="@dimen/_24sdp"/>
                     <TextView
-                        android:text="I agree to the Terms of Service and Privacy Policy."
+                        android:id="@+id/tvTermsAndPrivacyPolicy"
+                        android:text=""
                         android:maxLines="2"
                         android:textSize="@dimen/_10ssp"
                         android:textColor="@color/blackBackground"

@@ -102,9 +102,9 @@
     <string name="enter_pin_code">Enter pincode here</string>
     <string name="remember_me">Remember Pin</string>
     <string name="no_file_chosen">No File Chosen</string>
-
-
-
+    <string name="termsOfService">Terms of Service</string>
+    <string name="privacyPolicy">Privacy Policy</string>
+    <string name="termsAndConditionsTransaction">I agree to the Terms of Service and Privacy Policy.</string>
 
 
     <string-array name="array_cities">

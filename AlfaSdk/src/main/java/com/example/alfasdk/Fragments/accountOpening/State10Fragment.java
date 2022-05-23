@@ -12,8 +12,16 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.UnderlineSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,14 +35,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.DataSource;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.load.engine.GlideException;
-import com.bumptech.glide.request.RequestListener;
-import com.bumptech.glide.request.target.BitmapImageViewTarget;
-import com.bumptech.glide.request.target.CustomTarget;
-import com.bumptech.glide.request.target.Target;
-import com.bumptech.glide.request.transition.Transition;
+
 import com.example.alfasdk.AccountOpeningActivity;
 import com.example.alfasdk.Const.ConnectionDetector;
 import com.example.alfasdk.Const.Constants;
@@ -45,6 +46,7 @@ import com.example.alfasdk.R;
 import com.example.alfasdk.Util.Alert;
 import com.example.alfasdk.Util.FileMetaData;
 import com.example.alfasdk.Util.Loading;
+import com.example.alfasdk.Util.MyClickableSpan;
 import com.example.alfasdk.Util.Util;
 import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.karumi.dexter.Dexter;
@@ -126,7 +128,9 @@ public class State10Fragment extends Fragment implements View.OnClickListener {
 //    private ImageView ivRemove10;
 
     private CheckBox checkbox;
+    private TextView tvTermsAndPrivacyPolicy;
     private Button btnSubmit;
+
 
     private int imagePosition = -1;
     private Loading loading;
@@ -213,6 +217,7 @@ public class State10Fragment extends Fragment implements View.OnClickListener {
         rlNomineeBack = view.findViewById(R.id.rlNomineeBack);
 
         checkbox = view.findViewById(R.id.checkbox);
+        tvTermsAndPrivacyPolicy = view.findViewById(R.id.tvTermsAndPrivacyPolicy);
         btnSubmit = view.findViewById(R.id.btnSubmit);
 
         ivBack.setOnClickListener(this);
@@ -242,6 +247,8 @@ public class State10Fragment extends Fragment implements View.OnClickListener {
 //        ivRemove6.setOnClickListener(this);
         btnSubmit.setOnClickListener(this);
 
+
+        setTextSpans();
 
         checkbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -334,6 +341,8 @@ public class State10Fragment extends Fragment implements View.OnClickListener {
         Log.e(TAG, "Zakat Status: "+accountOpeningObject.getZAKATSTATUS());
         Log.e(TAG, "dateOfExpiry: "+accountOpeningObject.getDATEOFEXPIRY());
         Log.e(TAG, "RESIDENTIAL_STATUS: "+accountOpeningObject.getRESIDENTIALSTATUS());
+
+        Log.e(TAG, "Final Jason: "+accountOpeningObject.toString() );
 
         loading.show();
         Call<AccountOpeningRequestResponse> call = RetrofitApi.getService().createAccount ( accountOpeningObject );
@@ -632,6 +641,29 @@ public class State10Fragment extends Fragment implements View.OnClickListener {
                 tvFileName.setText(fileMetaData.displayName);
             }
         }
+    }
+
+    private void setTextSpans() {
+
+        String textTermOfService = getString(R.string.termsOfService);
+        String textPrivacyPolicy = getString(R.string.privacyPolicy);
+
+        SpannableStringBuilder ssb = new SpannableStringBuilder("");
+        ssb.append("I agree to the ");
+
+        addClickableText(ssb, ssb.length(), textTermOfService, "", textTermOfService);
+        ssb.append(" and ");
+
+        addClickableText(ssb, ssb.length(), textPrivacyPolicy, "", textPrivacyPolicy);
+        ssb.append(".");
+
+        tvTermsAndPrivacyPolicy.setMovementMethod(LinkMovementMethod.getInstance());
+        tvTermsAndPrivacyPolicy.setText(ssb);
+    }
+
+    private void addClickableText(SpannableStringBuilder ssb, int startPos, String clickableText, String link, String title) {
+        ssb.append(clickableText);
+        ssb.setSpan(new MyClickableSpan(requireActivity(), title, link, ContextCompat.getColor(requireActivity(), R.color.colorSpanningLink)), startPos, ssb.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
     }
 
 

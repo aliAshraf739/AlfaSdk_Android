@@ -24,10 +24,16 @@ public class MainActivityApp extends MyLoginActivity {
 //            SdkInterface sdkInterface = new MyLoginActivity();
 //            sdkInterface.login(v, token, "PK54ALFH0005001004799205","4210152572587");
 
-            AccountOpeningObject accountOpeningObject = getModelObject();
             Intent intent = new Intent(this, AccountOpeningActivity.class);
-//            intent.putExtra("accountOpeningObject", new AccountOpeningObject());
-            intent.putExtra("accountOpeningObject", accountOpeningObject);
+
+            //For Empty data object
+            intent.putExtra("accountOpeningObject", new AccountOpeningObject());
+
+            //For Filled data object
+            //AccountOpeningObject accountOpeningObject = getModelObject();
+            //intent.putExtra("accountOpeningObject", accountOpeningObject);
+
+
             startActivity(intent);
 
         });
