@@ -177,30 +177,31 @@ public class State3Fragment extends Fragment implements View.OnClickListener {
         }
 
 
-        if(
-                (!obj.getMAILINGADDRESS1().isEmpty() && obj.getMAILINGADDRESS1()!=null) &&
-                        (!obj.getCITYTOWNVILLAGE().isEmpty() && obj.getCITYTOWNVILLAGE()!=null) &&
-                        (!obj.getPROVINCESTATE().isEmpty() && obj.getPROVINCESTATE()!=null) &&
-                        (!obj.getCOUNTRY().isEmpty() && obj.getCOUNTRY()!=null) &&
-                        (!obj.getTELEPHONEOFFICE().isEmpty() && obj.getTELEPHONEOFFICE()!=null) &&
-                        (!obj.getTELEPHONERESIDENCE().isEmpty() && obj.getTELEPHONERESIDENCE()!=null) &&
-                        (!obj.getFAX().isEmpty() && obj.getFAX()!=null) &&
-                        (!obj.getMOBILENO().isEmpty() && obj.getMOBILENO()!=null) &&
-                        (!obj.getEMAIL().isEmpty() && obj.getEMAIL()!=null) &&
-                        (!obj.getPERMANENTADDRESS1().isEmpty() && obj.getPERMANENTADDRESS1()!=null) &&
-                        (!obj.getPERMANENTCITYTOWN().isEmpty() && obj.getPERMANENTCITYTOWN()!=null) &&
-                        (!obj.getPERMANENTPROVINCE().isEmpty() && obj.getPERMANENTPROVINCE()!=null) &&
-                        (!obj.getPERMANENTCOUNTRY().isEmpty() && obj.getPERMANENTCOUNTRY()!=null)
-
-        )
-        {
-            Log.e(TAG, "checkData: All fields are non-null");
-            Util.performNavigation(requireActivity(), R.id.action_state3Fragment_to_state4Fragment);
-        }
-        else
-        {
-            setData();
-        }
+        //        if(
+//                (!obj.getMAILINGADDRESS1().isEmpty() && obj.getMAILINGADDRESS1()!=null) &&
+//                        (!obj.getCITYTOWNVILLAGE().isEmpty() && obj.getCITYTOWNVILLAGE()!=null) &&
+//                        (!obj.getPROVINCESTATE().isEmpty() && obj.getPROVINCESTATE()!=null) &&
+//                        (!obj.getCOUNTRY().isEmpty() && obj.getCOUNTRY()!=null) &&
+//                        (!obj.getTELEPHONEOFFICE().isEmpty() && obj.getTELEPHONEOFFICE()!=null) &&
+//                        (!obj.getTELEPHONERESIDENCE().isEmpty() && obj.getTELEPHONERESIDENCE()!=null) &&
+//                        (!obj.getFAX().isEmpty() && obj.getFAX()!=null) &&
+//                        (!obj.getMOBILENO().isEmpty() && obj.getMOBILENO()!=null) &&
+//                        (!obj.getEMAIL().isEmpty() && obj.getEMAIL()!=null) &&
+//                        (!obj.getPERMANENTADDRESS1().isEmpty() && obj.getPERMANENTADDRESS1()!=null) &&
+//                        (!obj.getPERMANENTCITYTOWN().isEmpty() && obj.getPERMANENTCITYTOWN()!=null) &&
+//                        (!obj.getPERMANENTPROVINCE().isEmpty() && obj.getPERMANENTPROVINCE()!=null) &&
+//                        (!obj.getPERMANENTCOUNTRY().isEmpty() && obj.getPERMANENTCOUNTRY()!=null)
+//
+//        )
+//        {
+//            Log.e(TAG, "checkData: All fields are non-null");
+//            //Util.performNavigation(requireActivity(), R.id.action_state3Fragment_to_state4Fragment);
+//        }
+//        else
+//        {
+//            setData();
+//        }
+        setData();
 
     }
 
@@ -245,7 +246,7 @@ public class State3Fragment extends Fragment implements View.OnClickListener {
         if(obj.getMAILINGADDRESS1().isEmpty() || obj.getMAILINGADDRESS1()==null){
             Util.setInputEditable(etMailingAddress, true);
         }else{
-            textInputLayoutMailingAddress.setVisibility(View.GONE);
+            //textInputLayoutMailingAddress.setVisibility(View.GONE);
         }
 
         if(obj.getCITYTOWNVILLAGE().isEmpty() || obj.getCITYTOWNVILLAGE()==null){
@@ -253,57 +254,57 @@ public class State3Fragment extends Fragment implements View.OnClickListener {
             atvMailingCity.setThreshold(0);
             atvMailingCity.setAdapter(customArrayAdapter);
         }else{
-            textInputLayoutMailingCity.setVisibility(View.GONE);
+            //textInputLayoutMailingCity.setVisibility(View.GONE);
         }
 
         if(obj.getPROVINCESTATE().isEmpty() || obj.getPROVINCESTATE()==null){
             isMailingProvinceEnabled = true;
             atvMailingProvince.setAdapter(arrayAdapterProvinces);
         }else{
-            textInputLayoutMailingProvince.setVisibility(View.GONE);
+            //textInputLayoutMailingProvince.setVisibility(View.GONE);
         }
 
         if(obj.getCOUNTRY().isEmpty() || obj.getCOUNTRY()==null){
             Util.setInputEditable(etMailingCountry, true);
         }else{
-            textInputLayoutMailingCountry.setVisibility(View.GONE);
+            //textInputLayoutMailingCountry.setVisibility(View.GONE);
         }
 
 
         if(obj.getTELEPHONEOFFICE().isEmpty() || obj.getTELEPHONEOFFICE()==null){
             Util.setInputEditable(etTelOff, true);
         }else{
-            textInputLayoutTelOff.setVisibility(View.GONE);
+            //textInputLayoutTelOff.setVisibility(View.GONE);
         }
 
         if(obj.getTELEPHONERESIDENCE().isEmpty() || obj.getTELEPHONERESIDENCE()==null){
             Util.setInputEditable(etTelRes, true);
         }else{
-            textInputLayoutTelRes.setVisibility(View.GONE);
+            //textInputLayoutTelRes.setVisibility(View.GONE);
         }
 
         if(obj.getFAX().isEmpty() || obj.getFAX()==null){
             Util.setInputEditable(etFax, true);
         }else{
-            textInputLayoutFax.setVisibility(View.GONE);
+            //textInputLayoutFax.setVisibility(View.GONE);
         }
 
         if(obj.getMOBILENO().isEmpty() || obj.getMOBILENO()==null){
             Util.setInputEditable(etMobile, true);
         }else{
-            textInputLayoutMobile.setVisibility(View.GONE);
+            //textInputLayoutMobile.setVisibility(View.GONE);
         }
 
         if(obj.getEMAIL().isEmpty() || obj.getEMAIL()==null){
             Util.setInputEditable(etEmail, true);
         }else{
-            textInputLayoutEmail.setVisibility(View.GONE);
+            //textInputLayoutEmail.setVisibility(View.GONE);
         }
 
         if(obj.getPERMANENTADDRESS1().isEmpty() || obj.getPERMANENTADDRESS1()==null){
             Util.setInputEditable(etPermanentAddress, true);
         }else{
-            textInputLayoutPermanentAddress.setVisibility(View.GONE);
+            //textInputLayoutPermanentAddress.setVisibility(View.GONE);
         }
 
         if(obj.getPERMANENTCITYTOWN().isEmpty() || obj.getPERMANENTCITYTOWN()==null){
@@ -312,20 +313,20 @@ public class State3Fragment extends Fragment implements View.OnClickListener {
             atvPermanentCity.setThreshold(0);
             atvPermanentCity.setAdapter(customArrayAdapter);
         }else{
-            textInputLayoutPermanentCity.setVisibility(View.GONE);
+            //textInputLayoutPermanentCity.setVisibility(View.GONE);
         }
 
         if(obj.getPERMANENTPROVINCE().isEmpty() || obj.getPERMANENTPROVINCE()==null){
             isPermanentProvinceEnabled = true;
             atvPermanentProvince.setAdapter(arrayAdapterProvinces);
         }else{
-            textInputLayoutPermanentProvince.setVisibility(View.GONE);
+            //textInputLayoutPermanentProvince.setVisibility(View.GONE);
         }
 
         if(obj.getPERMANENTCOUNTRY().isEmpty() || obj.getPERMANENTCOUNTRY()==null){
             Util.setInputEditable(etPermanentCountry, true);
         }else{
-            textInputLayoutPermanentCountry.setVisibility(View.GONE);
+            //textInputLayoutPermanentCountry.setVisibility(View.GONE);
         }
 
     }

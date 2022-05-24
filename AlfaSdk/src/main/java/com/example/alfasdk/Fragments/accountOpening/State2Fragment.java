@@ -163,13 +163,13 @@ public class State2Fragment extends Fragment implements View.OnClickListener {
         if(etCnicPassportNumber.getText().toString().isEmpty()){
             Util.setInputEditable(etCnicPassportNumber, true);
         }else{
-            textInputLayoutCnic.setVisibility(View.GONE);
+            //textInputLayoutCnic.setVisibility(View.GONE);
         }
 
         if(obj.getISSUEDATE().isEmpty() || obj.getISSUEDATE()==null){
             isIssueDateEnabled = true;
         }else{
-            textInputLayoutIssueDate.setVisibility(View.GONE);
+            //textInputLayoutIssueDate.setVisibility(View.GONE);
         }
 
         if(obj.getDATEOFEXPIRY().isEmpty() || obj.getDATEOFEXPIRY()==null){
@@ -177,7 +177,7 @@ public class State2Fragment extends Fragment implements View.OnClickListener {
             isExpiryDateEnabled = true;
         }else{
             checkBox.setVisibility(View.GONE);
-            textInputLayoutExpiryDate.setVisibility(View.GONE);
+            //textInputLayoutExpiryDate.setVisibility(View.GONE);
         }
 
     }

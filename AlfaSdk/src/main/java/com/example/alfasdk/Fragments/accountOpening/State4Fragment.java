@@ -107,13 +107,13 @@ public class State4Fragment extends Fragment implements View.OnClickListener {
         if(obj.getBANKNAME().isEmpty() || obj.getBANKNAME()==null){
             Util.setInputEditable(etBankName, true);
         }else{
-            textInputLayoutBankName.setVisibility(View.GONE);
+            //textInputLayoutBankName.setVisibility(View.GONE);
         }
 
         if(obj.getIBAN().isEmpty() || obj.getIBAN()==null){
             Util.setInputEditable(etIbanNumber, true);
         }else{
-            textInputLayoutIbanNumber.setVisibility(View.GONE);
+            //textInputLayoutIbanNumber.setVisibility(View.GONE);
         }
     }
 

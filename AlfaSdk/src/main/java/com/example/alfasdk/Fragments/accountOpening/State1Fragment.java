@@ -125,6 +125,7 @@ public class State1Fragment extends Fragment implements View.OnClickListener {
 
     private void setData() {
         obj = ((AccountOpeningActivity) requireActivity()).accountOpeningObject;
+
         etName.setText(obj.getNAME());
         etFatherName.setText(obj.getFATHERHUSBANDNAME());
         etBirthDate.setText(obj.getDATEOFBIRTH());
@@ -162,14 +163,14 @@ public class State1Fragment extends Fragment implements View.OnClickListener {
             Util.setInputEditable(etName, true);
         }
         else{
-            textInputLayoutName.setVisibility(View.GONE);
+            //textInputLayoutName.setVisibility(View.GONE);
         }
 
         if(etFatherName.getText().toString().isEmpty()){
             Util.setInputEditable(etFatherName, true);
         }
         else{
-            textInputLayoutFatherName.setVisibility(View.GONE);
+            //textInputLayoutFatherName.setVisibility(View.GONE);
         }
 
         //        if(obj.getDATEOFBIRTH().isEmpty() || obj.getDATEOFBIRTH()==null){
@@ -179,11 +180,11 @@ public class State1Fragment extends Fragment implements View.OnClickListener {
         if(obj.getMARITALSTATUS().isEmpty() || obj.getMARITALSTATUS()==null){
             isMartialStatusEnabled=true;
         }else{
-            textInputLayoutMaritalStatus.setVisibility(View.GONE);
+            //textInputLayoutMaritalStatus.setVisibility(View.GONE);
         }
 
         if(!atvResidentialStatus.getText().toString().isEmpty()){
-            etNationality.setVisibility(View.GONE);
+            //etNationality.setVisibility(View.GONE);
         }
 
     }
@@ -237,11 +238,11 @@ public class State1Fragment extends Fragment implements View.OnClickListener {
             obj.setNAME(etName.getText().toString());
         }
 
-        if(!Util.checkAlphabetValidity(etName)){
-            etName.setError("Name must contain only letters.");
-            etName.requestFocus();
-            return false;
-        }
+//        if(!Util.checkAlphabetValidity(etName)){
+//            etName.setError("Name must contain only letters.");
+//            etName.requestFocus();
+//            return false;
+//        }
 
         if(etFatherName.getText().toString().isEmpty()){
             etFatherName.setError("Please enter father/husband's name.");
@@ -251,11 +252,11 @@ public class State1Fragment extends Fragment implements View.OnClickListener {
             obj.setFATHERHUSBANDNAME(etFatherName.getText().toString());
         }
 
-        if(!Util.checkAlphabetValidity(etFatherName)){
-            etFatherName.setError("Father/Husband name must contain only letters.");
-            etFatherName.requestFocus();
-            return false;
-        }
+//        if(!Util.checkAlphabetValidity(etFatherName)){
+//            etFatherName.setError("Father/Husband name must contain only letters.");
+//            etFatherName.requestFocus();
+//            return false;
+//        }
 
 //        if(etBirthDate.getText().toString().isEmpty()){
 //            //Show Alert

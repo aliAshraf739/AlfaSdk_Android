@@ -270,7 +270,7 @@ public class State10Fragment extends Fragment implements View.OnClickListener {
             ivAdd1.setVisibility(View.VISIBLE);
             tvFileName1.setVisibility(View.VISIBLE);
         }else{
-            rlCnicFront.setVisibility(View.GONE);
+            rlCnicFront.setVisibility(View.VISIBLE);
             Bitmap cnicFrontBitmap = Util.decodeImage(accountOpeningObject.getCNICFRONT());
             if(cnicFrontBitmap!=null){
                 ivCnicFront.setImageBitmap(cnicFrontBitmap);
@@ -283,7 +283,7 @@ public class State10Fragment extends Fragment implements View.OnClickListener {
             ivAdd2.setVisibility(View.VISIBLE);
             tvFileName2.setVisibility(View.VISIBLE);
         }else{
-            rlCnicBack.setVisibility(View.GONE);
+            rlCnicBack.setVisibility(View.VISIBLE);
             Bitmap cnicBackBitmap = Util.decodeImage(accountOpeningObject.getCNICBACK());
             if(cnicBackBitmap!=null){
                 ivCnicBack.setImageBitmap(cnicBackBitmap);
