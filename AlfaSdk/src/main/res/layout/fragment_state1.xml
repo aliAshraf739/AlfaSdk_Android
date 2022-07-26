@@ -102,10 +102,12 @@
                     android:layout_height="@dimen/_40sdp">
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etName"
+                        android:inputType="text"
                         android:maxLength="120"
                         android:focusable="false"
                         android:cursorVisible="false"
                         android:focusableInTouchMode="false"
+                        android:importantForAutofill="no"
                         style="@style/AppTheme.EditText"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -123,13 +125,14 @@
                         android:focusable="false"
                         android:cursorVisible="false"
                         android:focusableInTouchMode="false"
+                        android:importantForAutofill="no"
                         style="@style/AppTheme.EditText"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <!--Mother Maiden Name-->
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayoutMotherName"
                     style="@style/TextInputLayoutStyle"
-                    android:visibility="gone"
                     android:hint="Mother Maiden Name"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_40sdp">
@@ -139,21 +142,21 @@
                         android:focusable="false"
                         android:cursorVisible="false"
                         android:focusableInTouchMode="false"
+                        android:importantForAutofill="no"
                         style="@style/AppTheme.EditText"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <!--Gender-->
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/TextInputLayoutStyle"
-                    android:visibility="gone"
                     android:hint="Gender"
                     app:endIconDrawable="@drawable/ic_drop_down"
                     app:endIconTint="@color/alfaRed"
                     app:endIconMode="custom"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_40sdp">
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etGender"
+                    <AutoCompleteTextView
+                        android:id="@+id/atvGender"
                         android:focusable="false"
                         android:cursorVisible="false"
                         android:focusableInTouchMode="false"
@@ -163,7 +166,6 @@
                 <!--Date of Birth-->
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/TextInputLayoutStyle"
-                    android:visibility="gone"
                     android:hint="Date of Birth"
                     app:endIconDrawable="@drawable/ic_calendar_2"
                     app:endIconTint="@color/alfaRed"
@@ -181,7 +183,6 @@
                 <!--Place of Birth-->
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/TextInputLayoutStyle"
-                    android:visibility="gone"
                     android:hint="Place of Birth"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_40sdp">
@@ -196,7 +197,6 @@
                 <!--Nationality-->
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/textInputLayoutNationality"
-                    android:visibility="gone"
                     style="@style/TextInputLayoutStyle"
                     android:hint="Nationality"
                     app:endIconDrawable="@drawable/ic_drop_down"
@@ -233,7 +233,6 @@
                 <!--Residential Status-->
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/textInputLayoutResidentialStatus"
-                    android:visibility="gone"
                     style="@style/TextInputLayoutStyle"
                     android:hint="Residential Status"
                     app:endIconDrawable="@drawable/ic_drop_down"

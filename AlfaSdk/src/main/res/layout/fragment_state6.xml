@@ -199,7 +199,6 @@
 
                 <!--Zakat Status-->
                 <com.google.android.material.textfield.TextInputLayout
-                    android:visibility="gone"
                     android:id="@+id/textInputLayoutZakatStatus"
                     style="@style/TextInputLayoutStyle"
                     android:hint="Zakat Status"

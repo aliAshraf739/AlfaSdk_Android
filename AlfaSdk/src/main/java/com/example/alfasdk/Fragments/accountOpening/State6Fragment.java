@@ -57,9 +57,11 @@ public class State6Fragment extends Fragment implements View.OnClickListener {
     boolean isDepartmentEnabledEnabled = false;
     boolean isEmployerAddressEnabled = false;
 
-    String[] mListOccupations = { "Agriculture", "Business", "Housewife", "Household", "Retired Person", "Student", "Business Executive", "Industrialist", "Professional", "Service", "Govt./Public Sector", "Others" };
-    String[] mListGrossAnnualIncomes = { "Below Rs. 100,000", "Rs. 100,001 - Rs. 250,000", "Rs. 250,001 - Rs. 500,000", "Rs. 500,001 - Rs. 1,000,000", "Rs. 1,000,001 - Rs. 2,500,000", "Above Rs. 2,500,001" };
-    String[] mListIncomeItems = { "100,000", "100,001", "250,001", "500,001", "1,000,001", "2,500,001" };
+    String[] mListOccupations = { "Agriculturist", "Business", "Housewife", "Household", "Retired Person", "Student", "Business Executive", "Industrialist", "Professional", "Service", "Govt./Public Sector", "Others" };
+//    String[] mListGrossAnnualIncomes = { "Below Rs. 100,000", "Rs. 100,001 - Rs. 250,000", "Rs. 250,001 - Rs. 500,000", "Rs. 500,001 - Rs. 1,000,000", "Rs. 1,000,001 - Rs. 2,500,000", "Above Rs. 2,500,001" };
+//    String[] mListIncomeItems = { "100,000", "100,001", "250,001", "500,001", "1,000,001", "2,500,001" };
+    String[] mListGrossAnnualIncomes = { "Up to Rs. 100,000", "Rs. 100,001 - Rs. 250,000", "Rs. 250,001 - Rs. 500,000", "Above Rs. 500,000" };
+    String[] mListIncomeItems = { "100,000", "100,001", "250,001", "500,001"};
 
 
     @Override
@@ -76,7 +78,6 @@ public class State6Fragment extends Fragment implements View.OnClickListener {
     }
 
     private void initViews(View view) {
-
 
         ivBack = view.findViewById(R.id.ivBack);
         tvTitle = view.findViewById(R.id.tvTitle);
@@ -112,7 +113,7 @@ public class State6Fragment extends Fragment implements View.OnClickListener {
             }else{
                 isOtherOccupationEnabled = false;
                 textInputLayoutOther.setVisibility(View.GONE);
-                if(mListOccupations[i].equals("Housewife") || mListOccupations[i].equals("Household")){
+                if(mListOccupations[i].equals("Agriculturist") || mListOccupations[i].equals("Housewife") || mListOccupations[i].equals("Household") || mListOccupations[i].equals("Retired Person") || mListOccupations[i].equals("Student")){
                     disableEmployerFields();
                 }else{
                     enableEmployerFields();
@@ -129,9 +130,32 @@ public class State6Fragment extends Fragment implements View.OnClickListener {
     private void setData() {
         obj = ((AccountOpeningActivity) requireActivity()).accountOpeningObject;
         atvOccupation.setText(obj.getOCCUPATION());
-        etZakatStatus.setText(obj.getZAKATSTATUS());
+        atvGrossAnnualIncome.setText(obj.getGROSSANNUALINCOME());
+        etIncomeSource.setText(obj.getSOURCEOFINCOME());
+        etEmployerName.setText(obj.getEMPLOYERNAME());
+        etJobTitle.setText(obj.getJOBTITLE());
+        etDepartment.setText(obj.getDEPARTMENT());
+        etEmployerAddress.setText(obj.getEMPLOYERADDRESS());
 
-        if(obj.getOCCUPATION().equals("Housewife") || obj.getOCCUPATION().equals("Household")){
+        if(obj.getZAKATSTATUS().isEmpty() || obj.getZAKATSTATUS()==null){
+            etZakatStatus.setText("Active");
+            obj.setZAKATSTATUS("A");
+        }else{
+            if(obj.getZAKATSTATUS().equals("A")){
+                etZakatStatus.setText("Active");
+            }else if(obj.getZAKATSTATUS().equals("N")){
+                etZakatStatus.setText("Non-Active");
+            }
+        }
+
+        if(
+                obj.getOCCUPATION().equals("Agriculturist") ||
+                obj.getOCCUPATION().equals("Housewife") ||
+                obj.getOCCUPATION().equals("Household") ||
+                obj.getOCCUPATION().equals("Retired Person")||
+                obj.getOCCUPATION().equals("Student")
+        )
+        {
             disableEmployerFields();
         }
         else if(obj.getOCCUPATION().equals("Others)") || obj.getOCCUPATION().equals("Others (Specify)")){

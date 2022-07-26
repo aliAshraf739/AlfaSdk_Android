@@ -49,6 +49,7 @@ import com.example.alfasdk.Util.Loading;
 import com.example.alfasdk.Util.MyClickableSpan;
 import com.example.alfasdk.Util.Util;
 import com.github.dhaval2404.imagepicker.ImagePicker;
+import com.google.android.material.textfield.TextInputEditText;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionDeniedResponse;
@@ -82,11 +83,13 @@ public class State10Fragment extends Fragment implements View.OnClickListener {
     private ImageView ivRemove2;
     private RelativeLayout rlCnicBack;
 
-    //    private ImageView ivApplicantSignature;
-//    private TextView tvFileName3;
-//    private ImageView ivAdd3;
-//    private ImageView ivRemove3;
-    
+    private ImageView ivApplicantSignature;
+    private TextView tvFileName3;
+    private ImageView ivAdd3;
+    private ImageView ivRemove3;
+    private RelativeLayout rlSignature;
+
+
     private ImageView ivProofResidentialAddress;
     private TextView tvFileName4;
     private ImageView ivAdd4;
@@ -120,6 +123,7 @@ public class State10Fragment extends Fragment implements View.OnClickListener {
     private ImageView ivRemove9;
     private RelativeLayout rlNomineeBack;
 
+    private TextInputEditText etReferenceCode;
 
     //
 //    private ImageView ivForm;
@@ -132,19 +136,18 @@ public class State10Fragment extends Fragment implements View.OnClickListener {
     private Button btnSubmit;
 
 
+
     private int imagePosition = -1;
     private Loading loading;
     private AccountOpeningObject accountOpeningObject;
 
     private Boolean isCnicFrontEnabled = false;
     private Boolean isCnicBackEnabled = false;
+    private Boolean isSignatureEnabled = false;
+    private Boolean isZakatFormEnabled = false;
     private Boolean isNmnCnicFrontEnabled = false;
     private Boolean isNmnCnicBackEnabled = false;
-    private Boolean isZakatFormEnabled = false;
-    private Uri proofCnicFront, proofCnicBack, proof, proofResidentialAddress, proofNmnCnicFront, proofNmnCnicBack, proofZakatDecalration;
-
-    Boolean isCnicFrontImageLoaded = false, isCnicBackImageLoaded = false;
-
+    private Uri proofCnicFront, proofCnicBack, proofSignature, proofResidentialAddress, proofNmnCnicFront, proofNmnCnicBack, proofZakatDecalration;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -156,8 +159,10 @@ public class State10Fragment extends Fragment implements View.OnClickListener {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initViews(view);
+        checkData();
         setData();
     }
+
 
     private void initViews(View view) {
         loading = new Loading(requireActivity(), "");
@@ -178,15 +183,16 @@ public class State10Fragment extends Fragment implements View.OnClickListener {
         ivRemove2 = view.findViewById(R.id.ivRemove2);
         rlCnicBack = view.findViewById(R.id.rlCnicBack);
 
-        //        ivApplicantSignature = view.findViewById(R.id.ivApplicantSignature);
-//        tvFileName3 = view.findViewById(R.id.tvFileName3);
-//        ivAdd3 = view.findViewById(R.id.ivAdd3);
-//        ivRemove3 = view.findViewById(R.id.ivRemove3);
+        ivApplicantSignature = view.findViewById(R.id.ivApplicantSignature);
+        tvFileName3 = view.findViewById(R.id.tvFileName3);
+        ivAdd3 = view.findViewById(R.id.ivAdd3);
+        ivRemove3 = view.findViewById(R.id.ivRemove3);
+        rlSignature = view.findViewById(R.id.rlSignature);
 
-        ivProofResidentialAddress = view.findViewById(R.id.ivProofResidentialAddress);
-        tvFileName4 = view.findViewById(R.id.tvFileName4);
-        ivAdd4 = view.findViewById(R.id.ivAdd4);
-        ivRemove4 = view.findViewById(R.id.ivRemove4);
+//        ivProofResidentialAddress = view.findViewById(R.id.ivProofResidentialAddress);
+//        tvFileName4 = view.findViewById(R.id.tvFileName4);
+//        ivAdd4 = view.findViewById(R.id.ivAdd4);
+//        ivRemove4 = view.findViewById(R.id.ivRemove4);
 
         //        ivProofIncomeSource = view.findViewById(R.id.ivProofIncomeSource);
 //        tvFileName5 = view.findViewById(R.id.tvFileName5);
@@ -198,6 +204,7 @@ public class State10Fragment extends Fragment implements View.OnClickListener {
 //        ivAdd6 = view.findViewById(R.id.ivAdd6);
 //        ivRemove6 = view.findViewById(R.id.ivRemove6);
 //
+
         ivZakatForm = view.findViewById(R.id.ivZakatForm);
         tvFileName7 = view.findViewById(R.id.tvFileName7);
         ivAdd7 = view.findViewById(R.id.ivAdd7);
@@ -216,6 +223,8 @@ public class State10Fragment extends Fragment implements View.OnClickListener {
         ivRemove9 = view.findViewById(R.id.ivRemove9);
         rlNomineeBack = view.findViewById(R.id.rlNomineeBack);
 
+        etReferenceCode = view.findViewById(R.id.etReferenceCode);
+
         checkbox = view.findViewById(R.id.checkbox);
         tvTermsAndPrivacyPolicy = view.findViewById(R.id.tvTermsAndPrivacyPolicy);
         btnSubmit = view.findViewById(R.id.btnSubmit);
@@ -228,8 +237,11 @@ public class State10Fragment extends Fragment implements View.OnClickListener {
         ivAdd2.setOnClickListener(this);
         ivRemove2.setOnClickListener(this);
 
-        ivAdd4.setOnClickListener(this);
-        ivRemove4.setOnClickListener(this);
+        ivAdd3.setOnClickListener(this);
+        ivRemove3.setOnClickListener(this);
+
+        //ivAdd4.setOnClickListener(this);
+        //ivRemove4.setOnClickListener(this);
 
         ivAdd7.setOnClickListener(this);
         ivRemove7.setOnClickListener(this);
@@ -262,32 +274,77 @@ public class State10Fragment extends Fragment implements View.OnClickListener {
         });
     }
 
+    private void checkData() {
+        if(accountOpeningObject.getCNICFRONT().isEmpty() || accountOpeningObject.getCNICFRONT()==null){
+            Constants.isCnicFrontDocProvided = false;
+        }
+        if(accountOpeningObject.getCNICBACK().isEmpty() || accountOpeningObject.getCNICBACK()==null){
+            Constants.isCnicBackDocProvided = false;
+        }
+        if(accountOpeningObject.getSIGNATURE().isEmpty() || accountOpeningObject.getSIGNATURE()==null){
+            Constants.isSignatureDocProvided = false;
+        }
+    }
+
     private void setData() {
 
-        if(accountOpeningObject.getCNICFRONT().isEmpty() || accountOpeningObject.getCNICFRONT()==null){
-            isCnicFrontEnabled = true;
-            isCnicFrontImageLoaded = true;
-            ivAdd1.setVisibility(View.VISIBLE);
-            tvFileName1.setVisibility(View.VISIBLE);
-        }else{
+        if(Constants.isCnicFrontDocProvided){
             rlCnicFront.setVisibility(View.VISIBLE);
             Bitmap cnicFrontBitmap = Util.decodeImage(accountOpeningObject.getCNICFRONT());
             if(cnicFrontBitmap!=null){
                 ivCnicFront.setImageBitmap(cnicFrontBitmap);
             }
+        }else{
+            isCnicFrontEnabled = true;
+            ivAdd1.setVisibility(View.VISIBLE);
+            tvFileName1.setVisibility(View.VISIBLE);
         }
 
-        if(accountOpeningObject.getCNICBACK().isEmpty() || accountOpeningObject.getCNICBACK()==null){
-            isCnicBackEnabled = true;
-            isCnicBackImageLoaded = true;
-            ivAdd2.setVisibility(View.VISIBLE);
-            tvFileName2.setVisibility(View.VISIBLE);
-        }else{
+        //        if(accountOpeningObject.getCNICFRONT().isEmpty() || accountOpeningObject.getCNICFRONT()==null){
+//
+//
+//        }else{
+//        }
+
+
+        if(Constants.isCnicBackDocProvided){
             rlCnicBack.setVisibility(View.VISIBLE);
             Bitmap cnicBackBitmap = Util.decodeImage(accountOpeningObject.getCNICBACK());
             if(cnicBackBitmap!=null){
                 ivCnicBack.setImageBitmap(cnicBackBitmap);
             }
+        }else{
+            isCnicBackEnabled = true;
+            ivAdd2.setVisibility(View.VISIBLE);
+            tvFileName2.setVisibility(View.VISIBLE);
+        }
+
+        //        if(accountOpeningObject.getCNICBACK().isEmpty() || accountOpeningObject.getCNICBACK()==null){
+//        }else{
+//        }
+
+
+        if(Constants.isCnicBackDocProvided){
+            rlSignature.setVisibility(View.VISIBLE);
+            Bitmap signatureBitmap = Util.decodeImage(accountOpeningObject.getSIGNATURE());
+            if(signatureBitmap!=null){
+                ivApplicantSignature.setImageBitmap(signatureBitmap);
+            }
+        }else{
+            isSignatureEnabled = true;
+            ivAdd3.setVisibility(View.VISIBLE);
+            tvFileName3.setVisibility(View.VISIBLE);
+        }
+
+        //        if(accountOpeningObject.getSIGNATURE().isEmpty() || accountOpeningObject.getSIGNATURE()==null){
+//        }else{
+//        }
+
+        if(accountOpeningObject.getZAKATSTATUS().equals("N")){
+            isZakatFormEnabled=true;
+            rlZakatForm.setVisibility(View.VISIBLE);
+        }else{
+            rlZakatForm.setVisibility(View.GONE);
         }
 
         if(accountOpeningObject.getNOMINEE().equals("Y")){
@@ -302,20 +359,6 @@ public class State10Fragment extends Fragment implements View.OnClickListener {
             rlNomineeBack.setVisibility(View.GONE);
         }
 
-        if(accountOpeningObject.getZAKATSTATUS().equals("A")){
-            isZakatFormEnabled=true;
-            rlZakatForm.setVisibility(View.VISIBLE);
-        }else{
-            rlZakatForm.setVisibility(View.GONE);
-        }
-
-    }
-
-    private void dismissProgressBar() {
-        if(isCnicFrontImageLoaded && isCnicBackImageLoaded){
-            //dismiss progressbar
-            loading.dismiss();
-        }
     }
 
     @Override
@@ -341,8 +384,9 @@ public class State10Fragment extends Fragment implements View.OnClickListener {
         Log.e(TAG, "Zakat Status: "+accountOpeningObject.getZAKATSTATUS());
         Log.e(TAG, "dateOfExpiry: "+accountOpeningObject.getDATEOFEXPIRY());
         Log.e(TAG, "RESIDENTIAL_STATUS: "+accountOpeningObject.getRESIDENTIALSTATUS());
+        Log.e(TAG, "Date of Birth: "+accountOpeningObject.getDATEOFBIRTH() );
 
-        Log.e(TAG, "Final Jason: "+accountOpeningObject.toString() );
+        Log.e(TAG, "accountOpeningObject: "+accountOpeningObject.toString() );
 
         loading.show();
         Call<AccountOpeningRequestResponse> call = RetrofitApi.getService().createAccount ( accountOpeningObject );
@@ -357,9 +401,15 @@ public class State10Fragment extends Fragment implements View.OnClickListener {
                 }
                 if(response.code()==200){
                     if(response.isSuccessful() && response.body()!=null){
-                        if(response.body().getResponse().getResponseCode().equals("SUCCESS")){
+                        if(response.body().getCode().equals("00")){
+                            Log.e(TAG, "Success: ");
                             showAlert();
-                        }else{
+                        }
+                        else if(response.body().getCode().equals("16")){
+                            Log.e(TAG, "invalid: ");
+                            Alert.show(requireActivity(), "Error", "Invalid Data.");
+                        }
+                        else{
                             Alert.show(requireActivity(), "Error", "Something went wrong.");
                         }
                     }else{
@@ -410,6 +460,7 @@ public class State10Fragment extends Fragment implements View.OnClickListener {
                 ivAdd1.setVisibility(View.VISIBLE);
             }
         }
+
         else if(view.getId()==R.id.ivAdd2){
             if(isCnicBackEnabled){
                 checkPermission(2);
@@ -423,6 +474,21 @@ public class State10Fragment extends Fragment implements View.OnClickListener {
                 ivAdd2.setVisibility(View.VISIBLE);
             }
         }
+
+        else if(view.getId()==R.id.ivAdd3){
+            if(isSignatureEnabled){
+                checkPermission(3);
+            }
+        }
+        else if(view.getId()==R.id.ivRemove3){
+            if(isSignatureEnabled){
+                proofSignature = null;
+                setImageToImageView(null, ivApplicantSignature, tvFileName3);
+                ivRemove3.setVisibility(View.GONE);
+                ivAdd3.setVisibility(View.VISIBLE);
+            }
+        }
+
         else if(view.getId()==R.id.ivAdd4){
             checkPermission(4);
         }
@@ -487,13 +553,21 @@ public class State10Fragment extends Fragment implements View.OnClickListener {
             accountOpeningObject.setCNICBACK(encodedImage);
         }
 
-        if(proofResidentialAddress==null){
-            Alert.show(requireActivity(), "", "Please attach proof of your Residential Address.");
+        if(proofSignature==null){
+            Alert.show(requireActivity(), "", "Please attach proof of your Signature.");
             return false;
         }else{
-            String encodedImage = Util.convertUriToBase64(proofResidentialAddress, requireActivity());
-            accountOpeningObject.setRESDOC1(encodedImage);
+            String encodedImage = Util.convertUriToBase64(proofSignature, requireActivity());
+            accountOpeningObject.setSIGNATURE(encodedImage);
         }
+
+        //        if(proofResidentialAddress==null){
+//            Alert.show(requireActivity(), "", "Please attach proof of your Residential address.");
+//            return false;
+//        }else{
+//            String encodedImage = Util.convertUriToBase64(proofResidentialAddress, requireActivity());
+//            accountOpeningObject.setRESDOC1(encodedImage);
+//        }
 
         if(isZakatFormEnabled){
             if(proofZakatDecalration==null){
@@ -533,6 +607,8 @@ public class State10Fragment extends Fragment implements View.OnClickListener {
             accountOpeningObject.setCNICNMNBACK("");
         }
 
+        //set reference code to object
+
         if(!checkbox.isChecked()){
             Alert.show(requireActivity(), "", "Please check Terms of Service and Privacy Policy.");
             return false;
@@ -540,7 +616,6 @@ public class State10Fragment extends Fragment implements View.OnClickListener {
 
         return true;
     }
-
 
     private void checkPermission(int i) {
         Dexter.withContext(requireActivity())
@@ -587,6 +662,13 @@ public class State10Fragment extends Fragment implements View.OnClickListener {
                     setImageToImageView(uri, ivCnicBack, tvFileName2);
                     ivAdd2.setVisibility(View.GONE);
                     ivRemove2.setVisibility(View.VISIBLE);
+                    break;
+                }
+                case 3: {
+                    proofSignature = uri;
+                    setImageToImageView(uri, ivApplicantSignature, tvFileName3);
+                    ivAdd3.setVisibility(View.GONE);
+                    ivRemove3.setVisibility(View.VISIBLE);
                     break;
                 }
                 case 4: {
@@ -659,6 +741,7 @@ public class State10Fragment extends Fragment implements View.OnClickListener {
 
         tvTermsAndPrivacyPolicy.setMovementMethod(LinkMovementMethod.getInstance());
         tvTermsAndPrivacyPolicy.setText(ssb);
+
     }
 
     private void addClickableText(SpannableStringBuilder ssb, int startPos, String clickableText, String link, String title) {

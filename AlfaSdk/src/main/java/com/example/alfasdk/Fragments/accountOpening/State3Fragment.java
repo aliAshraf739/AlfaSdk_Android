@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,6 +19,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.alfasdk.AccountOpeningActivity;
 import com.example.alfasdk.Adapters.CustomArrayAdapter;
+import com.example.alfasdk.Const.Constants;
 import com.example.alfasdk.Models.AccountOpening.AccountOpeningObject;
 import com.example.alfasdk.Models.CityTownVillageModel.CityTownVillage;
 import com.example.alfasdk.R;
@@ -62,6 +65,8 @@ public class State3Fragment extends Fragment implements View.OnClickListener {
     private TextInputEditText etEmail;
     private TextInputLayout textInputLayoutEmail;
 
+
+    private CheckBox checkBox;
     private TextInputEditText etPermanentAddress;
     private TextInputLayout textInputLayoutPermanentAddress;
 
@@ -73,6 +78,7 @@ public class State3Fragment extends Fragment implements View.OnClickListener {
 
     private TextInputEditText etPermanentCountry;
     private TextInputLayout textInputLayoutPermanentCountry;
+
 
     private Button btnNext;
 
@@ -96,7 +102,6 @@ public class State3Fragment extends Fragment implements View.OnClickListener {
         initViews(view);
         checkData();
     }
-
 
     private void initViews(View view) {
         obj = ((AccountOpeningActivity) requireActivity()).accountOpeningObject;
@@ -130,6 +135,8 @@ public class State3Fragment extends Fragment implements View.OnClickListener {
         etEmail = view.findViewById(R.id.etEmail);
         textInputLayoutEmail = view.findViewById(R.id.textInputLayoutEmail);
 
+
+        checkBox = view.findViewById(R.id.checkBox);
         etPermanentAddress = view.findViewById(R.id.etPermanentAddress);
         textInputLayoutPermanentAddress = view.findViewById(R.id.textInputLayoutPermanentAddress);
 
@@ -166,6 +173,18 @@ public class State3Fragment extends Fragment implements View.OnClickListener {
             Log.e(TAG, "Permanent City: "+ cityTownVillage.getCityName());
         });
 
+        checkBox.setOnCheckedChangeListener((compoundButton, b) -> {
+            if(b){
+                etPermanentAddress.setText(etMailingAddress.getText().toString());
+                atvPermanentCity.setText(atvMailingCity.getText().toString());
+                atvPermanentProvince.setText(atvMailingProvince.getText().toString());
+            }else{
+                etPermanentAddress.setText("");
+                atvPermanentCity.setText("");
+                atvPermanentProvince.setText("");
+            }
+        });
+
     }
 
     private void checkData() {
@@ -176,33 +195,14 @@ public class State3Fragment extends Fragment implements View.OnClickListener {
             obj.setPERMANENTCOUNTRY("Pakistan");
         }
 
+        if((obj.getPERMANENTADDRESS1().isEmpty() || obj.getPERMANENTADDRESS1()==null) &&
+                (obj.getPERMANENTCITYTOWN().isEmpty() || obj.getPERMANENTCITYTOWN()==null) &&
+                (obj.getPERMANENTPROVINCE().isEmpty() || obj.getPERMANENTPROVINCE()==null)
+        ){
+            Constants.shouldAddressCheckBoxVisible = true;
+        }
 
-        //        if(
-//                (!obj.getMAILINGADDRESS1().isEmpty() && obj.getMAILINGADDRESS1()!=null) &&
-//                        (!obj.getCITYTOWNVILLAGE().isEmpty() && obj.getCITYTOWNVILLAGE()!=null) &&
-//                        (!obj.getPROVINCESTATE().isEmpty() && obj.getPROVINCESTATE()!=null) &&
-//                        (!obj.getCOUNTRY().isEmpty() && obj.getCOUNTRY()!=null) &&
-//                        (!obj.getTELEPHONEOFFICE().isEmpty() && obj.getTELEPHONEOFFICE()!=null) &&
-//                        (!obj.getTELEPHONERESIDENCE().isEmpty() && obj.getTELEPHONERESIDENCE()!=null) &&
-//                        (!obj.getFAX().isEmpty() && obj.getFAX()!=null) &&
-//                        (!obj.getMOBILENO().isEmpty() && obj.getMOBILENO()!=null) &&
-//                        (!obj.getEMAIL().isEmpty() && obj.getEMAIL()!=null) &&
-//                        (!obj.getPERMANENTADDRESS1().isEmpty() && obj.getPERMANENTADDRESS1()!=null) &&
-//                        (!obj.getPERMANENTCITYTOWN().isEmpty() && obj.getPERMANENTCITYTOWN()!=null) &&
-//                        (!obj.getPERMANENTPROVINCE().isEmpty() && obj.getPERMANENTPROVINCE()!=null) &&
-//                        (!obj.getPERMANENTCOUNTRY().isEmpty() && obj.getPERMANENTCOUNTRY()!=null)
-//
-//        )
-//        {
-//            Log.e(TAG, "checkData: All fields are non-null");
-//            //Util.performNavigation(requireActivity(), R.id.action_state3Fragment_to_state4Fragment);
-//        }
-//        else
-//        {
-//            setData();
-//        }
         setData();
-
     }
 
     private void setData() {
@@ -245,66 +245,45 @@ public class State3Fragment extends Fragment implements View.OnClickListener {
 
         if(obj.getMAILINGADDRESS1().isEmpty() || obj.getMAILINGADDRESS1()==null){
             Util.setInputEditable(etMailingAddress, true);
-        }else{
-            //textInputLayoutMailingAddress.setVisibility(View.GONE);
         }
 
         if(obj.getCITYTOWNVILLAGE().isEmpty() || obj.getCITYTOWNVILLAGE()==null){
             Util.setInputEditable(atvMailingCity, true);
             atvMailingCity.setThreshold(0);
             atvMailingCity.setAdapter(customArrayAdapter);
-        }else{
-            //textInputLayoutMailingCity.setVisibility(View.GONE);
         }
 
         if(obj.getPROVINCESTATE().isEmpty() || obj.getPROVINCESTATE()==null){
             isMailingProvinceEnabled = true;
             atvMailingProvince.setAdapter(arrayAdapterProvinces);
-        }else{
-            //textInputLayoutMailingProvince.setVisibility(View.GONE);
         }
 
         if(obj.getCOUNTRY().isEmpty() || obj.getCOUNTRY()==null){
             Util.setInputEditable(etMailingCountry, true);
-        }else{
-            //textInputLayoutMailingCountry.setVisibility(View.GONE);
         }
-
 
         if(obj.getTELEPHONEOFFICE().isEmpty() || obj.getTELEPHONEOFFICE()==null){
             Util.setInputEditable(etTelOff, true);
-        }else{
-            //textInputLayoutTelOff.setVisibility(View.GONE);
         }
 
         if(obj.getTELEPHONERESIDENCE().isEmpty() || obj.getTELEPHONERESIDENCE()==null){
             Util.setInputEditable(etTelRes, true);
-        }else{
-            //textInputLayoutTelRes.setVisibility(View.GONE);
         }
 
         if(obj.getFAX().isEmpty() || obj.getFAX()==null){
             Util.setInputEditable(etFax, true);
-        }else{
-            //textInputLayoutFax.setVisibility(View.GONE);
         }
 
         if(obj.getMOBILENO().isEmpty() || obj.getMOBILENO()==null){
             Util.setInputEditable(etMobile, true);
-        }else{
-            //textInputLayoutMobile.setVisibility(View.GONE);
         }
 
         if(obj.getEMAIL().isEmpty() || obj.getEMAIL()==null){
             Util.setInputEditable(etEmail, true);
-        }else{
-            //textInputLayoutEmail.setVisibility(View.GONE);
         }
 
         if(obj.getPERMANENTADDRESS1().isEmpty() || obj.getPERMANENTADDRESS1()==null){
             Util.setInputEditable(etPermanentAddress, true);
-        }else{
-            //textInputLayoutPermanentAddress.setVisibility(View.GONE);
         }
 
         if(obj.getPERMANENTCITYTOWN().isEmpty() || obj.getPERMANENTCITYTOWN()==null){
@@ -312,21 +291,15 @@ public class State3Fragment extends Fragment implements View.OnClickListener {
             Util.setInputEditable(atvPermanentCity, true);
             atvPermanentCity.setThreshold(0);
             atvPermanentCity.setAdapter(customArrayAdapter);
-        }else{
-            //textInputLayoutPermanentCity.setVisibility(View.GONE);
         }
 
         if(obj.getPERMANENTPROVINCE().isEmpty() || obj.getPERMANENTPROVINCE()==null){
             isPermanentProvinceEnabled = true;
             atvPermanentProvince.setAdapter(arrayAdapterProvinces);
-        }else{
-            //textInputLayoutPermanentProvince.setVisibility(View.GONE);
         }
 
         if(obj.getPERMANENTCOUNTRY().isEmpty() || obj.getPERMANENTCOUNTRY()==null){
             Util.setInputEditable(etPermanentCountry, true);
-        }else{
-            //textInputLayoutPermanentCountry.setVisibility(View.GONE);
         }
 
     }
@@ -463,6 +436,11 @@ public class State3Fragment extends Fragment implements View.OnClickListener {
     @Override
     public void onStart() {
         super.onStart();
+        if(Constants.shouldAddressCheckBoxVisible){
+            checkBox.setVisibility(View.VISIBLE);
+        }else{
+            checkBox.setVisibility(View.GONE);
+        }
         ((AccountOpeningActivity) requireActivity()).stepView.go(2, true);
     }
 

@@ -14,6 +14,9 @@ public class AccountOpeningRequestResponse{
 	@SerializedName("missingSet")
 	private List<String> missingSet;
 
+	@SerializedName("code")
+	private String code;
+
 	public List<String> getInvalidSet(){
 		return invalidSet;
 	}
@@ -24,5 +27,9 @@ public class AccountOpeningRequestResponse{
 
 	public List<String> getMissingSet(){
 		return missingSet;
+	}
+
+	public String getCode() {
+		return code;
 	}
 }

@@ -37,6 +37,7 @@ public class State4Fragment extends Fragment implements View.OnClickListener {
     private TextInputEditText etIbanNumber;
     private TextInputLayout textInputLayoutIbanNumber;
 
+    private TextInputEditText etBranchName;
     private TextInputEditText etBranchCode;
     private TextInputEditText etBranchAddress;
 
@@ -58,7 +59,6 @@ public class State4Fragment extends Fragment implements View.OnClickListener {
         setData();
     }
 
-
     private void initViews(View view) {
         obj = ((AccountOpeningActivity) requireActivity()).accountOpeningObject;
 
@@ -72,8 +72,10 @@ public class State4Fragment extends Fragment implements View.OnClickListener {
         etIbanNumber = view.findViewById(R.id.etIbanNumber);
         textInputLayoutIbanNumber = view.findViewById(R.id.textInputLayoutIbanNumber);
 
+        etBranchName = view.findViewById(R.id.etBranchName);
         etBranchCode = view.findViewById(R.id.etBranchCode);
         etBranchAddress = view.findViewById(R.id.etBranchAddress);
+
         radioGroup = view.findViewById(R.id.radioGroup);
         btnNext = view.findViewById(R.id.btnNext);
 
@@ -91,11 +93,13 @@ public class State4Fragment extends Fragment implements View.OnClickListener {
 
     }
 
-
     private void setData() {
         obj.setNOMINEE("N");
+
+        etAccountName.setText(obj.getBANKACCOUNTTITLE());
         etBankName.setText(obj.getBANKNAME());
         etIbanNumber.setText(obj.getIBAN());
+        etBranchName.setText(obj.getBRANCHNAME());
         etBranchCode.setText(obj.getBRANCHCODE());
         etBranchAddress.setText(obj.getBRANCHADDRESS());
 
@@ -104,19 +108,29 @@ public class State4Fragment extends Fragment implements View.OnClickListener {
     }
 
     private void setInputsEditAble() {
+        if(obj.getBANKACCOUNTTITLE().isEmpty() || obj.getBANKACCOUNTTITLE()==null){
+            Util.setInputEditable(etAccountName, true);
+        }
+
         if(obj.getBANKNAME().isEmpty() || obj.getBANKNAME()==null){
             Util.setInputEditable(etBankName, true);
-        }else{
-            //textInputLayoutBankName.setVisibility(View.GONE);
         }
 
         if(obj.getIBAN().isEmpty() || obj.getIBAN()==null){
             Util.setInputEditable(etIbanNumber, true);
-        }else{
-            //textInputLayoutIbanNumber.setVisibility(View.GONE);
         }
-    }
 
+        if(obj.getBRANCHNAME().isEmpty() || obj.getBRANCHNAME()==null){
+            Util.setInputEditable(etBranchName, true);
+        }
+        if(obj.getBRANCHCODE().isEmpty() || obj.getBRANCHCODE()==null){
+            Util.setInputEditable(etBranchCode, true);
+        }
+        if(obj.getBRANCHADDRESS().isEmpty() || obj.getBRANCHADDRESS()==null){
+            Util.setInputEditable(etBranchAddress, true);
+        }
+
+    }
 
     @Override
     public void onClick(View view) {
@@ -156,7 +170,6 @@ public class State4Fragment extends Fragment implements View.OnClickListener {
     private Boolean isValidInputs() {
 
         if(etAccountName.getText().toString().isEmpty()){
-            //Util.setInputEditable(etBankName,true);
             Util.setInputError(etAccountName);
             return false;
         }else{
@@ -176,6 +189,28 @@ public class State4Fragment extends Fragment implements View.OnClickListener {
         }else {
             obj.setIBAN(etIbanNumber.getText().toString());
         }
+
+        if(etBranchName.getText().toString().isEmpty()){
+            Util.setInputError(etBranchName);
+            return false;
+        }else {
+            obj.setBRANCHNAME(etBranchName.getText().toString());
+        }
+
+        if(etBranchCode.getText().toString().isEmpty()){
+            Util.setInputError(etBranchCode);
+            return false;
+        }else {
+            obj.setBRANCHCODE(etBranchCode.getText().toString());
+        }
+
+        if(etBranchAddress.getText().toString().isEmpty()){
+            Util.setInputError(etBranchAddress);
+            return false;
+        }else {
+            obj.setBRANCHADDRESS(etBranchAddress.getText().toString());
+        }
+
 
         return true;
     }

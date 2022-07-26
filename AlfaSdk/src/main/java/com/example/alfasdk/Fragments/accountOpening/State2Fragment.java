@@ -64,7 +64,7 @@ public class State2Fragment extends Fragment implements View.OnClickListener {
     boolean isExpiryDateEnabled = false;
     boolean isPlaceOfIssueEnabled = false;
 
-    String[] mListIdentificationTypes = { "CNIC", "SNIC", "Passport" };
+    String[] mListIdentificationTypes = { "CNIC", "SNIC" };
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -162,14 +162,9 @@ public class State2Fragment extends Fragment implements View.OnClickListener {
 
         if(etCnicPassportNumber.getText().toString().isEmpty()){
             Util.setInputEditable(etCnicPassportNumber, true);
-        }else{
-            //textInputLayoutCnic.setVisibility(View.GONE);
         }
-
         if(obj.getISSUEDATE().isEmpty() || obj.getISSUEDATE()==null){
             isIssueDateEnabled = true;
-        }else{
-            //textInputLayoutIssueDate.setVisibility(View.GONE);
         }
 
         if(obj.getDATEOFEXPIRY().isEmpty() || obj.getDATEOFEXPIRY()==null){

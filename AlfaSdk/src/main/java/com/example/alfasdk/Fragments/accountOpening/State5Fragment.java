@@ -56,7 +56,7 @@ public class State5Fragment extends Fragment implements View.OnClickListener {
 
     private AccountOpeningObject obj;
     boolean isPlaceOfIssueEnabled = false;
-    String[] mListIdentificationTypes = { "CNIC", "SNIC", "Passport" };
+    String[] mListIdentificationTypes = { "CNIC", "SNIC" };
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

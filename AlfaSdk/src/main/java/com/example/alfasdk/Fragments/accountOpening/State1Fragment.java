@@ -33,20 +33,15 @@ public class State1Fragment extends Fragment implements View.OnClickListener {
     private ImageView ivBack;
     private TextView tvTitle;
     private AutoCompleteTextView atvTitle;
+
     private TextInputEditText etName;
-    private TextInputLayout textInputLayoutName;
-
     private TextInputEditText etFatherName;
-    private TextInputLayout textInputLayoutFatherName;
-
+    private TextInputEditText etMotherName;
+    private AutoCompleteTextView atvGender;
     private TextInputEditText etBirthDate;
-
+    private TextInputEditText etBirthPlace;
     private TextInputEditText etNationality;
-    private TextInputLayout textInputLayoutNationality;
-
     private AutoCompleteTextView atvMartialStatus;
-    private TextInputLayout textInputLayoutMaritalStatus;
-
     private AutoCompleteTextView atvResidentialStatus;
 
     private Button btnNext;
@@ -54,9 +49,11 @@ public class State1Fragment extends Fragment implements View.OnClickListener {
     private AccountOpeningObject obj;
     //String[] mListResidentialStatus = { "Resident", "Non-Resident" };
 
+    private boolean isGenderEnabled = false;
     private boolean isBirthDateEnabled = false;
     private boolean isMartialStatusEnabled = false;
     private String[] mListTitles = { "Mr.", "Mrs.", "Ms." };
+    private String[] mListGender = { "Male", "Female" };
     private String[] mListMartialStatus = { "Single", "Married" };
 
 
@@ -86,20 +83,15 @@ public class State1Fragment extends Fragment implements View.OnClickListener {
         atvTitle = view.findViewById(R.id.atvTitle);
 
         etName = view.findViewById(R.id.etName);
-        textInputLayoutName = view.findViewById(R.id.textInputLayoutName);
-
         etFatherName = view.findViewById(R.id.etFatherName);
-        textInputLayoutFatherName = view.findViewById(R.id.textInputLayoutFatherName);
-
+        etMotherName = view.findViewById(R.id.etMotherName);
+        atvGender = view.findViewById(R.id.atvGender);
         etBirthDate = view.findViewById(R.id.etBirthDate);
-
+        etBirthPlace = view.findViewById(R.id.etBirthPlace);
         etNationality = view.findViewById(R.id.etNationality);
-        textInputLayoutNationality = view.findViewById(R.id.textInputLayoutNationality);
-
         atvMartialStatus = view.findViewById(R.id.atvMartialStatus);
-        textInputLayoutMaritalStatus = view.findViewById(R.id.textInputLayoutMaritalStatus);
-
         atvResidentialStatus = view.findViewById(R.id.atvResidentialStatus);
+
         btnNext = view.findViewById(R.id.btnNext);
 
         etBirthDate.setOnClickListener(this);
@@ -107,10 +99,14 @@ public class State1Fragment extends Fragment implements View.OnClickListener {
         btnNext.setOnClickListener(this);
 
         atvTitle.setOnClickListener(this);
+        atvGender.setOnClickListener(this);
         atvMartialStatus.setOnClickListener(this);
 
         atvTitle.setOnItemClickListener((adapterView, view1, i, l) -> {
             obj.setSALUTATION(mListTitles[i]);
+        });
+        atvGender.setOnItemClickListener((adapterView, view1, i, l) -> {
+            obj.setGENDER(mListGender[i]);
         });
         atvMartialStatus.setOnItemClickListener((adapterView, view1, i, l) -> {
             if(mListMartialStatus[i].equals("Single")){
@@ -128,14 +124,12 @@ public class State1Fragment extends Fragment implements View.OnClickListener {
 
         etName.setText(obj.getNAME());
         etFatherName.setText(obj.getFATHERHUSBANDNAME());
+        etMotherName.setText(obj.getMOTHERNAME());
+        atvGender.setText(obj.getGENDER());
         etBirthDate.setText(obj.getDATEOFBIRTH());
-        atvResidentialStatus.setText("Pakistani");
-
-        if(obj.getNATIONALITY().isEmpty() || obj.getNATIONALITY()==null){
-            etNationality.setText("Pakistani");
-        }else{
-            etNationality.setText(obj.getNATIONALITY());
-        }
+        etBirthPlace.setText(obj.getPLACEOFBIRTH());
+        etNationality.setText("Pakistani");
+        atvResidentialStatus.setText("RESIDENT PAKISTANI");
 
         if(obj.getMARITALSTATUS().equals("S")){
             atvMartialStatus.setText("Single");
@@ -149,8 +143,11 @@ public class State1Fragment extends Fragment implements View.OnClickListener {
         ArrayAdapter<String> arrayAdapter1 = new ArrayAdapter<>(requireActivity(), android.R.layout.simple_list_item_1, mListTitles);
         atvTitle.setAdapter(arrayAdapter1);
 
-        ArrayAdapter<String> arrayAdapter2 = new ArrayAdapter<>(requireActivity(), android.R.layout.simple_list_item_1, mListMartialStatus);
-        atvMartialStatus.setAdapter(arrayAdapter2);
+        ArrayAdapter<String> arrayAdapter2 = new ArrayAdapter<>(requireActivity(), android.R.layout.simple_list_item_1, mListGender);
+        atvGender.setAdapter(arrayAdapter2);
+
+        ArrayAdapter<String> arrayAdapter3 = new ArrayAdapter<>(requireActivity(), android.R.layout.simple_list_item_1, mListMartialStatus);
+        atvMartialStatus.setAdapter(arrayAdapter3);
 
 
         setInputsEditAble();
@@ -162,29 +159,29 @@ public class State1Fragment extends Fragment implements View.OnClickListener {
         if(etName.getText().toString().isEmpty()){
             Util.setInputEditable(etName, true);
         }
-        else{
-            //textInputLayoutName.setVisibility(View.GONE);
-        }
 
         if(etFatherName.getText().toString().isEmpty()){
             Util.setInputEditable(etFatherName, true);
         }
-        else{
-            //textInputLayoutFatherName.setVisibility(View.GONE);
+
+        if(etMotherName.getText().toString().isEmpty()){
+            Util.setInputEditable(etMotherName, true);
         }
 
-        //        if(obj.getDATEOFBIRTH().isEmpty() || obj.getDATEOFBIRTH()==null){
-//            isBirthDateEnabled = true;
-//        }
+        if(obj.getGENDER().isEmpty() || obj.getGENDER()==null){
+            isGenderEnabled = true;
+        }
+
+        if(obj.getDATEOFBIRTH().isEmpty() || obj.getDATEOFBIRTH()==null){
+            isBirthDateEnabled = true;
+        }
+
+        if(etBirthPlace.getText().toString().isEmpty()){
+            Util.setInputEditable(etBirthPlace, true);
+        }
 
         if(obj.getMARITALSTATUS().isEmpty() || obj.getMARITALSTATUS()==null){
             isMartialStatusEnabled=true;
-        }else{
-            //textInputLayoutMaritalStatus.setVisibility(View.GONE);
-        }
-
-        if(!atvResidentialStatus.getText().toString().isEmpty()){
-            //etNationality.setVisibility(View.GONE);
         }
 
     }
@@ -193,6 +190,11 @@ public class State1Fragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         if(view.getId()==R.id.atvTitle){
             atvTitle.showDropDown();
+        }
+        else if(view.getId()==R.id.atvGender){
+            if(isGenderEnabled){
+                atvGender.showDropDown();
+            }
         }
         else if(view.getId()==R.id.etBirthDate){
             if(isBirthDateEnabled){
@@ -220,7 +222,7 @@ public class State1Fragment extends Fragment implements View.OnClickListener {
         dialog.setTitle("Select Date");
         dialog.showDatePicker((view, year, month, dayOfMonth) -> {
             //Date select callback
-            textInputEditText.setText(dayOfMonth+"/"+(month+1)+"/"+year);
+            textInputEditText.setText(Util.getFormattedDate(dayOfMonth, month, year));
         }, Calendar.getInstance());
     }
 
@@ -238,12 +240,6 @@ public class State1Fragment extends Fragment implements View.OnClickListener {
             obj.setNAME(etName.getText().toString());
         }
 
-//        if(!Util.checkAlphabetValidity(etName)){
-//            etName.setError("Name must contain only letters.");
-//            etName.requestFocus();
-//            return false;
-//        }
-
         if(etFatherName.getText().toString().isEmpty()){
             etFatherName.setError("Please enter father/husband's name.");
             etFatherName.requestFocus();
@@ -252,19 +248,37 @@ public class State1Fragment extends Fragment implements View.OnClickListener {
             obj.setFATHERHUSBANDNAME(etFatherName.getText().toString());
         }
 
-//        if(!Util.checkAlphabetValidity(etFatherName)){
-//            etFatherName.setError("Father/Husband name must contain only letters.");
-//            etFatherName.requestFocus();
-//            return false;
-//        }
+        if(etMotherName.getText().toString().isEmpty()){
+            etMotherName.setError("Please enter mother/maiden's name.");
+            etMotherName.requestFocus();
+            return false;
+        }else{
+            obj.setMOTHERNAME(etMotherName.getText().toString());
+        }
 
-//        if(etBirthDate.getText().toString().isEmpty()){
-//            //Show Alert
-//            Alert.show(requireActivity(), "", "Please select your Date of Birth.");
-//            return false;
-//        }else{
-//            obj.setDATEOFBIRTH(etBirthDate.getText().toString());
-//        }
+        if(atvGender.getText().toString().isEmpty()){
+            //Show Alert
+            Alert.show(requireActivity(), "", "Please select your Gender.");
+            return false;
+        }
+
+        if(etBirthDate.getText().toString().isEmpty()){
+            //Show Alert
+            Alert.show(requireActivity(), "", "Please select your Date of Birth.");
+            return false;
+        }else{
+            obj.setDATEOFBIRTH(etBirthDate.getText().toString());
+        }
+
+        if(etBirthPlace.getText().toString().isEmpty()){
+            //Show Alert
+            etBirthPlace.setError("Please enter your Place of Birth.");
+            etBirthPlace.requestFocus();
+            return false;
+
+        }else{
+            obj.setPLACEOFBIRTH(etBirthPlace.getText().toString());
+        }
 
         if(etNationality.getText().toString().isEmpty()){
             //Show Alert
@@ -286,7 +300,7 @@ public class State1Fragment extends Fragment implements View.OnClickListener {
             Alert.show(requireActivity(), "", "Please select your Residential Status.");
             return false;
         }else{
-            obj.setRESIDENTIALSTATUS("Pakistani");
+            obj.setRESIDENTIALSTATUS("RESIDENT PAKISTANI");
         }
 
         if(obj.getZAKATSTATUS().isEmpty()){

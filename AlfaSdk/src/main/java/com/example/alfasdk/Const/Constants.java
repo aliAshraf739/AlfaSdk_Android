@@ -121,5 +121,10 @@ public class Constants {
     public  static  String SYMBOL_RESPONSE="";
     public  static  String MARKET_RESPONSE="";
 
+    public static boolean shouldAddressCheckBoxVisible = false;
+
+    public static boolean isCnicFrontDocProvided = true;
+    public static boolean isCnicBackDocProvided = true;
+    public static boolean isSignatureDocProvided = true;
 
 }
